@@ -3,9 +3,11 @@ package com.segocines;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -65,7 +67,7 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
     
     //Parte del SQLite de la aplicacion, declaracion de variables
     
-    private ApplicationSegoCines baseDatos;
+    public ApplicationSegoCines appSegoCines;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -285,7 +287,9 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    			
 	    			// Insertar en la base de datos mediante el método escrito en el application
 	    			
-	    			baseDatos.escribirDatos(idPelicula, nombrePelicula, directorPelicula, precioPelicula);
+	    			appSegoCines = ((ApplicationSegoCines) getApplication());
+	    			
+	    			appSegoCines.escribirDatos(idPelicula, nombrePelicula, directorPelicula, precioPelicula);
 	    			
 	    			
 	    			// Añadiendo valores al HashMap, de forma clave => valor

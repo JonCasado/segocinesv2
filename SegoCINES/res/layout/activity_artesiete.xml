@@ -30,9 +30,11 @@
     </ImageView>
     
 	<ListView
-        android:id="@+id/listArtesiete"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+	    android:id="@+id/listArtesiete"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/tabs" >
+
     </ListView>
 
 </RelativeLayout>
