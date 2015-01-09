@@ -81,47 +81,4 @@ public class BaseDeDatos {
 			db.close(); //
 		}
 	}
-	
-	
-	
-		/** *
-		* @return Cursor where the columns are _id, created_at, user, txt
-		
-		
-	public Cursor getStatusUpdates() {
-		
-		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
-		
-		return db.query(TABLE, null, null, null, null, null, GET_ALL_ORDER_BY);
-		
-	}
-	
-		
-		* @return Timestamp of the latest status we have it the database
-		
-		
-	public long getLatestStatusCreatedAtTime() { //
-		
-		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
-		
-		try {
-		
-			Cursor cursor = db.query(TABLE, MAX_CREATED_AT_COLUMNS, null, null, null, null,
-		
-					null);
-		try {
-		
-			return cursor.moveToNext() ? cursor.getLong(0) : Long.MIN_VALUE;
-		} 
-		finally {
-		
-			cursor.close();
-		}
-		} 
-		finally {
-		db.close();
-		}
-	}
-	*/
-		
 }

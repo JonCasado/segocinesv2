@@ -6,11 +6,12 @@ import android.util.Log;
 
 public class ApplicationSegoCines extends Application {
 	
-	/*
 	
 	private static final String TAG = ApplicationSegoCines.class.getSimpleName();
 	
 	private BaseDeDatos segocinesData;
+	
+	
 	
 	
 	//Creamos el método getStatusData que nos devuelve el objeto
@@ -25,35 +26,30 @@ public class ApplicationSegoCines extends Application {
 		return segocinesData;
 	}
 	
-	public synchronized void fetchStatusUpdates() {
+	
+	public synchronized void escribirDatos(int idPeli, String nombrePeli, String directorPeli, double precio) {
 		
-		Log.d(TAG, "Fetching status updates");
+		Log.d(TAG, "Añadiendo peliculas");
 		
 		
 		try {
 		
-		
 			ContentValues values = new ContentValues();
 		
-			for (Twitter.Status status : timeline) {
-		
 				values.clear();
-		
-				values.put(BaseDeDatos.C_ID, status.id);
-				values.put(BaseDeDatos.C_CREATED_AT, status.createdAt.getTime());
-				values.put(BaseDeDatos.C_TEXT, status.text);
-				values.put(BaseDeDatos.C_USER, status.user.name);
-		
-				Log.d(TAG, String.format("%s: %s", status.user.name, status.text));
-		
-				this.getStatusData().insertOrIgnore(values);
-			}
+				values.put(BaseDeDatos.C_ID, idPeli);
+				values.put(BaseDeDatos.C_NOMBRE, nombrePeli);
+				values.put(BaseDeDatos.C_DIRECTOR, directorPeli);
+				values.put(BaseDeDatos.C_PRECIO, precio);
+				
+			this.getStatusData().insertOrIgnore(values);
+			
 		} 
 		catch (RuntimeException e) {
 		
 			Log.e(TAG, "Failed to fetch status updates", e);
 		}
+		
+		
 	}
-	
-	*/
 }
