@@ -22,8 +22,8 @@ public class ArteSiete extends ActionBarActivity
 	Cursor cursor;
 	SimpleCursorAdapter adapter;
 
-	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_DIRECTOR, BaseDeDatos.C_PRECIO};
-	static final int[] TO = {R.id.nombrePeli, R.id.directorPeli, R.id.precioPeli};
+	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_DIRECTOR};
+	static final int[] TO = {R.id.nombrePeli};
 	private static BaseDeDatos BD;
 	
 	@Override

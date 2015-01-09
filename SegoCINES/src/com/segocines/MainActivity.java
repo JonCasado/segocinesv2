@@ -20,11 +20,13 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -44,24 +46,35 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
     private List<DrawerItem> dataList;
     
     ListView list;
+    ImageView imgPrevia;
     TextView nombre;
-    TextView director;
-    TextView precio;
-    Button Btngetdata;
+    TextView cineA;
+    TextView horario;
     
     ArrayList<HashMap<String, String>> oslist = new ArrayList<HashMap<String, String>>();
     
     //URL de donde recogemos la informacion de las peliculas en formato JSON
     
-    private static String url = "http://www.camaradesegovia.es/AutomaticApiRest/getData.php?t=pelicula&c=id_peli,nombrePeli,directorPeli,precioPeli";
+    private static String url = "http://www.camaradesegovia.es/AutomaticApiRest/getData.php?t=pelicula&c=id_peli,imgPreviaPeli,imgPeli,nombrePeli,nombreOrigPeli,sinopsisPeli,edadPeli,horarioArtesietePeli,horarioLuzCastillaPeli,directorPeli,a%C3%B1oPeli,paisPeli,duracionPeli,generoPeli,trailerPeli";
     
     //Nombre de los nodos del JSON
     
     private static final String TAG_DATA = "data";
     private static final String TAG_ID = "id_peli";
+    private static final String TAG_IMGPREVIA = "imgPreviaPeli";
+    private static final String TAG_IMG = "imgPeli";
     private static final String TAG_NOMBRE = "nombrePeli";
+    private static final String TAG_NOMBREORIG = "nombreOrigPeli";
+    private static final String TAG_SINOPSIS = "sinopsisPeli";
+    private static final String TAG_EDAD = "edadPeli";
+    private static final String TAG_HORARIOARTESIETE = "horarioArtesietePeli";
+    private static final String TAG_HORARIOLUZCASTILLA = "horarioLuzCastillaPeli";
     private static final String TAG_DIRECTOR = "directorPeli";
-    private static final String TAG_PRECIO = "precioPeli";
+    private static final String TAG_ANYO = "anyoPeli";
+    private static final String TAG_DURACION = "duracionPeli";
+    private static final String TAG_PAIS = "paisPeli";
+    private static final String TAG_GENERO = "generoPeli";
+    private static final String TAG_TRAILER = "trailerPeli";
     
     JSONArray data = null;
     
@@ -226,9 +239,10 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 		{
 			super.onPreExecute();     
 			
+			imgPrevia = (ImageView)findViewById(R.id.imgPreviaPeli);
 			nombre = (TextView)findViewById(R.id.nombrePeli);
-			director = (TextView)findViewById(R.id.directorPeli);
-	        precio = (TextView)findViewById(R.id.precioPeli);
+			cineA = (TextView)findViewById(R.id.cineAPeli);
+			horario = (TextView)findViewById(R.id.horarioAPeli);
 	            
 	        pDialog = new ProgressDialog(MainActivity.this);   
 	        pDialog.setMessage("Recogiendo datos...");
@@ -240,7 +254,6 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    @Override
 	    protected JSONObject doInBackground(String... args)
 	    {
-	        
 	    	JSONParser jParser = new JSONParser();
 	    	
 	        JSONObject json = jParser.getJSONFromUrl(url); //JSON de la url establecida
@@ -262,10 +275,21 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	                
 	    			// Guardando el  JSON en una Variable
 	    			
-	    			int idPelicula = c.getInt(TAG_ID);
-	    			String nombrePelicula = c.getString(TAG_NOMBRE);
-	    			String directorPelicula = c.getString(TAG_DIRECTOR);
-	    			double precioPelicula = c.getDouble(TAG_PRECIO);
+	    			int idPeli = c.getInt(TAG_ID);
+	    			String imgPreviaPeli = c.getString(TAG_IMGPREVIA);
+	    			String imgPeli = c.getString(TAG_IMG);
+	    			String nombrePeli = c.getString(TAG_NOMBRE);
+	    			String nombreOrigPeli = c.getString(TAG_NOMBREORIG);
+	    			String sinopsisPeli = c.getString(TAG_SINOPSIS);
+	    			int edadPeli = c.getInt(TAG_EDAD);
+	    			String horarioArtesietePeli = c.getString(TAG_HORARIOARTESIETE);
+	    			String horarioLuzCastillaPeli = c.getString(TAG_HORARIOLUZCASTILLA);
+	    			String directorPeli = c.getString(TAG_DIRECTOR);
+	    			int añoPeli = c.getInt(TAG_ANYO);
+	    			String paisPeli = c.getString(TAG_PAIS);
+	    			int duracionPeli = c.getInt(TAG_DURACION);
+	    			String generoPeli = c.getString(TAG_GENERO);
+	    			String trailerPeli = c.getString(TAG_TRAILER);
 	    			
 	    			//Almacenando el JSON en la base de datos
 	    			
@@ -277,23 +301,21 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    			
 	    			appSegoCines = ((ApplicationSegoCines) getApplication());
 	    			
-	    			appSegoCines.escribirDatos(idPelicula, nombrePelicula, directorPelicula, precioPelicula);
+	    			appSegoCines.escribirDatos(idPeli, imgPreviaPeli, imgPeli, nombrePeli, nombreOrigPeli, sinopsisPeli, edadPeli, horarioArtesietePeli, horarioLuzCastillaPeli, directorPeli, añoPeli, paisPeli, duracionPeli, generoPeli, trailerPeli);
 	    			
 	    			
 	    			// Añadiendo valores al HashMap, de forma clave => valor
 	    			HashMap<String, String> map = new HashMap<String, String>();
 	                
-	    			map.put(TAG_NOMBRE, nombrePelicula);
-	    			map.put(TAG_DIRECTOR, directorPelicula);
-	    			//map.put(TAG_PRECIO, precioPelicula);
+	    			map.put(TAG_NOMBRE, nombrePeli);
 	                
 	    			oslist.add(map);
 	                
 	    			list = (ListView)findViewById(R.id.list);
 	                
-	    			ListAdapter adapter = new SimpleAdapter(MainActivity.this, oslist,R.layout.formato_lista,
-	    				new String[] {TAG_NOMBRE,TAG_DIRECTOR/*, TAG_PRECIO*/},
-	    				new int[] {R.id.nombrePeli,R.id.directorPeli/*, R.id.precioPeli*/}
+	    			ListAdapter adapter = new SimpleAdapter(MainActivity.this, oslist, R.layout.formato_lista,
+	    				new String[] {TAG_NOMBRE},
+	    				new int[] {R.id.nombrePeli}
 	    			);
 	                
 	    			list.setAdapter(adapter);
