@@ -47,8 +47,6 @@ public class ApplicationSegoCines extends Application {
 			Log.e(TAG, "Failed to fetch status updates", e);
 		}
 		
-		segocinesData.close();
-		
-		
+		segocinesData.close();		
 	}
 }
