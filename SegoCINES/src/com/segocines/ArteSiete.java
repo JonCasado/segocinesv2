@@ -1,11 +1,14 @@
 package com.segocines;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 /*************************************************************/
 /** @Author = ("Joaquin Casas", "Jon Casado")				**/
@@ -15,6 +18,14 @@ import android.view.MenuItem;
 ///////////////////////////////////////////////////////////////
 public class ArteSiete extends ActionBarActivity
 {	
+	ListView listArtesiete;
+	Cursor cursor;
+	SimpleCursorAdapter adapter;
+
+	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_DIRECTOR, BaseDeDatos.C_PRECIO};
+	static final int[] TO = {R.id.nombrePeli, R.id.directorPeli, R.id.precioPeli};
+	private static BaseDeDatos BD;
+	
 	@Override
     public void onCreate(Bundle savedInstanceState)
 	{
@@ -22,6 +33,31 @@ public class ArteSiete extends ActionBarActivity
         setContentView(R.layout.activity_artesiete);  
         
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        listArtesiete = (ListView) findViewById(R.id.listArtesiete);
+
+        BD = new BaseDeDatos(this);
+	}
+	
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+
+		BD.close();
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+
+		cursor = BD.leerDatos();
+		startManagingCursor(cursor);
+
+		adapter = new SimpleCursorAdapter(this, R.layout.formato_lista, cursor, FROM, TO);
+		listArtesiete.setAdapter(adapter);
 	}
 	
 	//MENUACTIONBAR
