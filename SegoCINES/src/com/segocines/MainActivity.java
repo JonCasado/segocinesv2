@@ -118,18 +118,6 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 		//Parte del codigo que obtendra las peliculas a traves de pulsar un boton, ademas llamamos al proceso en Background que 
 		//conseguira el JSON alojado en la url que le pasemos.
 		//Creamos tambien un hashmap para la posible implementacion de pulsar en una parte del list view y que se abra otro activity.
-		
-		oslist = new ArrayList<HashMap<String, String>>();
-		Btngetdata = (Button)findViewById(R.id.getdata);
-		
-        Btngetdata.setOnClickListener(new View.OnClickListener()
-        {
-	        @Override
-	        public void onClick(View view)
-	        {
-	        	new JSONParse().execute();
-	        }
-        });
         
     }
     
@@ -172,11 +160,11 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 			case R.id.action_Settings:
 				startActivity(new Intent(this, PrefsActivity.class));
 				return true;
-				/*
+				
 			case R.id.action_Upgrade:
-				startService(new Intent(this, ServicioRecogerDatos.class));
+				new JSONParse().execute();
 				return true;
-				*/
+				
 			default:
 				return super.onOptionsItemSelected(item);
 		}
