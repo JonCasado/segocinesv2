@@ -2,6 +2,7 @@ package com.segocines;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -16,7 +17,6 @@ public class BaseDeDatos {
 	public static final String C_NOMBRE = "nombrePeli";
 	public static final String C_DIRECTOR = "directorPeli";
 	public static final String C_PRECIO = "precioPeli";
-	
 	
 	//Subclase DbHelper
 	
@@ -80,5 +80,12 @@ public class BaseDeDatos {
 		
 			db.close(); //
 		}
+	}
+	
+	public Cursor leerDatos()
+	{
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		
+		return db.query(TABLE, null, null, null, null, null, null);
 	}
 }

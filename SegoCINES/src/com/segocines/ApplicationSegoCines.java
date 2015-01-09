@@ -11,9 +11,6 @@ public class ApplicationSegoCines extends Application {
 	
 	private BaseDeDatos segocinesData;
 	
-	
-	
-	
 	//Creamos el método getStatusData que nos devuelve el objeto
 	//BaseDeDatos si existe (y si no existe lo crea).
 	public BaseDeDatos getStatusData() {
@@ -49,6 +46,8 @@ public class ApplicationSegoCines extends Application {
 		
 			Log.e(TAG, "Failed to fetch status updates", e);
 		}
+		
+		segocinesData.close();
 		
 		
 	}
