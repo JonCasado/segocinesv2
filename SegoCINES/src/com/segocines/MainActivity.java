@@ -34,6 +34,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//MAINACTIVITY
 public class MainActivity extends ActionBarActivity implements OnSharedPreferenceChangeListener
 {
 	SharedPreferences prefs;
