@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory android:title="@string/quality_video">
+	    
+	    <ListPreference
+	        android:key="videoqualityWIFI"
+	        android:title="@string/quality_videoWIFI"
+	        android:summary="%s"
+	        android:entryValues="@array/videoPrefs"
+	        android:entries="@array/videoPrefs"
+	        android:defaultValue="@string/quality_video_standar"
+	        android:theme="@style/MyPrefsTheme" >
+	    </ListPreference>
+	    
+	    <ListPreference
+	        android:key="videoqualityDatosMv"
+	        android:title="@string/quality_videoDatosMv"
+	        android:summary="%s"
+	        android:entryValues="@array/videoPrefs"
+	        android:entries="@array/videoPrefs"
+	        android:defaultValue="@string/quality_video_standar"
+	        android:theme="@style/MyPrefsTheme" >
+	    </ListPreference>
+    </PreferenceCategory>
+
+</PreferenceScreen>

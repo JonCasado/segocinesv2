@@ -1,0 +1,31 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Application Theme -->
+    <style name="CustomActionBarTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <!-- ActionBar style -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/splash</item>
+
+        <!-- Support library compatibility -->
+        <item name="background">@drawable/splash</item>
+    </style>
+    
+    <!-- Preferences style -->
+    <style name="MyPrefsTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+	  	<item name="android:textColorPrimary">#030e2e</item>
+	   	<item name="android:textColorSecondary">#3c59b5</item>
+	   	<item name="android:textColorTertiary">#000000</item>
+	   	<item name="android:textSize">16sp</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="videoPrefs" >
+        <item>Ninguno seleccionado</item>
+        <item>720p - HD</item>
+        <item>480p</item>
+        <item>Resolución estándar</item>
+    </string-array>
+</resources>
