@@ -4,19 +4,18 @@ import android.app.Application;
 import android.content.ContentValues;
 import android.util.Log;
 
-public class ApplicationSegoCines extends Application {
-	
-	
+public class ApplicationSegoCines extends Application
+{
 	private static final String TAG = ApplicationSegoCines.class.getSimpleName();
 	
-	private BaseDeDatos segocinesData;
+	public BaseDeDatos segocinesData;
 	
 	//Creamos el método getStatusData que nos devuelve el objeto
 	//BaseDeDatos si existe (y si no existe lo crea).
-	public BaseDeDatos getStatusData() {
-	
-		if (segocinesData == null) {
-	
+	public BaseDeDatos getStatusData()
+	{
+		if (segocinesData == null)
+		{
 			segocinesData = new BaseDeDatos(this);
 		}
 	
@@ -24,26 +23,24 @@ public class ApplicationSegoCines extends Application {
 	}
 	
 	
-	public synchronized void escribirDatos(int idPeli, String nombrePeli, String directorPeli, double precio) {
-		
+	public synchronized void escribirDatos(int idPeli, String imgPreviaPeli, String imgPeli, String nombrePeli, String nombreOrigPeli, String sinopsisPeli, int edadPeli, String horarioArtesietePeli, String horarioLuzCastillaPeli, String directorPeli, int añoPeli, String paisPeli, int duracionPeli, String generoPeli, String trailerPeli)
+	{
 		Log.d(TAG, "Añadiendo peliculas");
 		
-		
-		try {
-		
+		try
+		{
 			ContentValues values = new ContentValues();
 		
 				values.clear();
 				values.put(BaseDeDatos.C_ID, idPeli);
+				values.put(BaseDeDatos.C_IMGPREVIA, imgPreviaPeli);
 				values.put(BaseDeDatos.C_NOMBRE, nombrePeli);
-				values.put(BaseDeDatos.C_DIRECTOR, directorPeli);
-				values.put(BaseDeDatos.C_PRECIO, precio);
 				
 			this.getStatusData().insertOrIgnore(values);
 			
 		} 
-		catch (RuntimeException e) {
-		
+		catch (RuntimeException e)
+		{
 			Log.e(TAG, "Failed to fetch status updates", e);
 		}
 		

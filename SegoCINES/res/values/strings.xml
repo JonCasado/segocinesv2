@@ -4,10 +4,27 @@
     <string name="app_name">SegoCINES</string>
     <string name="cine1">Artesiete</string>
     <string name="cine2">Luz de Castilla</string>
+    
     <string name="pelicula1">Título</string>
     <string name="title_datos_pelicula">Información</string>
     <string name="action_Upgrade">Actualizar</string>
     <string name="action_Settings">Ajustes</string>
+    
+    <!-- PELICULA -->
+    <string name="imgPeli">imagen</string>
+    <string name="imgPreviaPeli">imagen</string>
+    <string name="horarioPeli">Horario: </string>
+    <string name="sinopsisPeli">Sinopsis</string>
+    <string name="tituloPeli">Título: </string>
+    <string name="tituloOrigPeli">Título Original: </string>
+    <string name="directorPeli">Director: </string>
+    <string name="duracionPeli">Duración: </string>
+    <string name="paisPeli">País: </string>
+    <string name="anyoPeli">Año: </string>
+    <string name="generoPeli">Género: </string>
+    <string name="edadPeli">No recomendad para menores de</string>
+    <string name="anyos">años.</string>
+    <string name="trailerPeli">Trailer</string>
     
     <!-- NAVIGATION DRAWER -->
     <string name="item_icon">Item icono</string>
