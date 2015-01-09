@@ -3,19 +3,14 @@ package com.segocines;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -70,8 +65,7 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
     
     //Parte del SQLite de la aplicacion, declaracion de variables
     
-    DbHelper dbHelper;
-    SQLiteDatabase db;
+    private ApplicationSegoCines baseDatos;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -135,7 +129,6 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	        }
         });
         
-        dbHelper = new DbHelper(this);
     }
     
     
@@ -280,49 +273,35 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    			// Guardando el  JSON en una Variable
 	    			
 	    			int idPelicula = c.getInt(TAG_ID);
-	                
 	    			String nombrePelicula = c.getString(TAG_NOMBRE);
 	    			String directorPelicula = c.getString(TAG_DIRECTOR);
-	    			String precioPelicula = c.getString(TAG_PRECIO);
+	    			double precioPelicula = c.getDouble(TAG_PRECIO);
 	    			
 	    			//Almacenando el JSON en la base de datos
-	    			db = dbHelper.getWritableDatabase();
+	    			
 	    			
 	    			// Iteramos sobre todos los componentes de timeline
 	    			
 	    			
-	    			// Insertar en la base de datos
+	    			// Insertar en la base de datos mediante el método escrito en el application
 	    			
-	    			ContentValues values = new ContentValues();
+	    			baseDatos.escribirDatos(idPelicula, nombrePelicula, directorPelicula, precioPelicula);
 	    			
-	    			values.clear();
-	    			values.put(DbHelper.C_ID, idPelicula);
-	    			values.put(DbHelper.C_NOMBRE, nombrePelicula);
-	    			values.put(DbHelper.C_DIRECTOR, directorPelicula);
-	    			values.put(DbHelper.C_PRECIO, precioPelicula);
 	    			
-	    			try
-	    			{
-	    				db.insertOrThrow(DbHelper.TABLE, null, values);
-	    			} 
-	    			catch (SQLException e) {} //Ignorar
-	    			
-	    			db.close();
-	                
 	    			// Añadiendo valores al HashMap, de forma clave => valor
 	    			HashMap<String, String> map = new HashMap<String, String>();
 	                
 	    			map.put(TAG_NOMBRE, nombrePelicula);
 	    			map.put(TAG_DIRECTOR, directorPelicula);
-	    			map.put(TAG_PRECIO, precioPelicula);
+	    			//map.put(TAG_PRECIO, precioPelicula);
 	                
 	    			oslist.add(map);
 	                
 	    			list = (ListView)findViewById(R.id.list);
 	                
 	    			ListAdapter adapter = new SimpleAdapter(MainActivity.this, oslist,R.layout.formato_lista,
-	    				new String[] {TAG_NOMBRE,TAG_DIRECTOR, TAG_PRECIO},
-	    				new int[] {R.id.nombrePeli,R.id.directorPeli, R.id.precioPeli}
+	    				new String[] {TAG_NOMBRE,TAG_DIRECTOR/*, TAG_PRECIO*/},
+	    				new int[] {R.id.nombrePeli,R.id.directorPeli/*, R.id.precioPeli*/}
 	    			);
 	                
 	    			list.setAdapter(adapter);
