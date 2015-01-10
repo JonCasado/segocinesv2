@@ -28,5 +28,12 @@
         android:maxWidth="250dp"
         android:src="@drawable/sgc_title_luzcastilla" >
     </ImageView>
+    
+    <ListView
+	    android:id="@+id/listLuzCastilla"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/tabs" >
+    </ListView>
 
 </RelativeLayout>

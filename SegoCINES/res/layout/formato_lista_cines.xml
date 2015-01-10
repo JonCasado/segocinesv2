@@ -26,9 +26,9 @@
         android:textStyle="bold" >
     </TextView>
  
-    <!-- Artesiete -->
+    <!-- Cine -->
     <TextView
-        android:id="@+id/cineAPeli"
+        android:id="@+id/cinePeli"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/nombrePeli"
@@ -37,34 +37,12 @@
         android:layout_toEndOf="@+id/imgPreviaPeli" >
     </TextView>
  
-    <!-- Horario Artesiete -->
+    <!-- Horario -->
     <TextView
-        android:id="@+id/horarioAPeli"
+        android:id="@+id/horarioPeli"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cineAPeli"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/imgPreviaPeli"
-        android:layout_toEndOf="@+id/imgPreviaPeli" >
-    </TextView>
-    
-    <!-- LuzCastilla -->
-    <TextView
-        android:id="@+id/cineBPeli"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/horarioAPeli"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/imgPreviaPeli"
-        android:layout_toEndOf="@+id/imgPreviaPeli" >
-    </TextView>
- 
-    <!-- Horario LuzCastilla -->
-    <TextView
-        android:id="@+id/horarioBPeli"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cineBPeli"
+        android:layout_below="@id/cinePeli"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/imgPreviaPeli"
         android:layout_toEndOf="@+id/imgPreviaPeli" >

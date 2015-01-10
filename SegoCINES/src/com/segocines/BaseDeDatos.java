@@ -30,7 +30,6 @@ public class BaseDeDatos
     static final String C_TRAILER = "trailerPeli";
 	
 	//Subclase DbHelper
-	
 	class DbHelper extends SQLiteOpenHelper
 	{
 		//Constructor
@@ -46,17 +45,11 @@ public class BaseDeDatos
 			
 			db.execSQL("drop table if exists " + TABLE);
 			
-			db.execSQL("create table " + TABLE + " (" + C_ID + " int primary key, " +
-			        
-                        C_NOMBRE + " text, "+ C_NOMBREORIG+ " text, " + C_DIRECTOR + " text)");
-        
-		
-			/*db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
+			db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
 				C_IMGPREVIA+" text, "+C_IMG+" text, "+
 				C_NOMBRE+" text, "+C_NOMBREORIG+" text, "
 				+C_SINOPSIS+" text, "+C_EDAD+" int, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
 				C_DIRECTOR+" text, "+C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");
-			*/
 		}
 		
 		@Override
@@ -90,6 +83,15 @@ public class BaseDeDatos
 		
 		SQLiteDatabase db = this.dbHelper.getWritableDatabase();
 		
+		//ACTUALIZAR LA BASE DE DATOS
+		/*db.execSQL("drop table if exists " + TABLE);
+		
+		db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
+				C_IMGPREVIA+" text, "+C_IMG+" text, "+
+				C_NOMBRE+" text, "   +C_NOMBREORIG+" text, "+
+				C_SINOPSIS+" text, " +C_EDAD+" int, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
+				C_DIRECTOR+" text, " +C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");
+		*/
 		try
 		{
 			db.insertWithOnConflict(TABLE, null, values, SQLiteDatabase.CONFLICT_IGNORE);
