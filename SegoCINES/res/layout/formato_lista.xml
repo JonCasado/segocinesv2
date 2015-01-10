@@ -26,12 +26,12 @@
         android:textStyle="bold" >
     </TextView>
  
-    <!-- Cine Artesiete -->
+    <!-- Nombre Origninal -->
     <TextView
-        android:id="@+id/cineAPeli"
+        android:id="@+id/nombreOrigPeli"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_below="@id/nombrePeli"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/imgPreviaPeli"
         android:layout_toEndOf="@+id/imgPreviaPeli" >
@@ -42,7 +42,18 @@
         android:id="@+id/horarioAPeli"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cineAPeli"
+        android:layout_below="@id/nombreOrigPeli"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/imgPreviaPeli"
+        android:layout_toEndOf="@+id/imgPreviaPeli" >
+    </TextView>
+    
+    <!-- Director -->
+    <TextView
+        android:id="@+id/directorPeli"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horarioAPeli"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/imgPreviaPeli"
         android:layout_toEndOf="@+id/imgPreviaPeli" >

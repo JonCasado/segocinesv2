@@ -13,7 +13,7 @@ public class BaseDeDatos
 	static final int VERSION = 1;
 	static final String DATABASE = "segocines.db";
 	static final String TABLE = "peliculas";
-	static final String C_ID = "id_peli";
+	static final String C_ID = "_id";
     static final String C_IMGPREVIA = "imgPreviaPeli";
     static final String C_IMG = "imgPeli";
     static final String C_NOMBRE = "nombrePeli";
@@ -41,15 +41,22 @@ public class BaseDeDatos
 		
 		@Override
 		public void onCreate(SQLiteDatabase db)
-		{
+		{			
+			Log.i(C, "Creating database: "+ DATABASE);
 			
-			Log.i(C, "Creating database: " + DATABASE);
+			db.execSQL("drop table if exists " + TABLE);
 			
-			db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
+			db.execSQL("create table " + TABLE + " (" + C_ID + " int primary key, " +
+			        
+                        C_NOMBRE + " text, "+ C_NOMBREORIG+ " text, " + C_DIRECTOR + " text)");
+        
+		
+			/*db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
 				C_IMGPREVIA+" text, "+C_IMG+" text, "+
 				C_NOMBRE+" text, "+C_NOMBREORIG+" text, "
 				+C_SINOPSIS+" text, "+C_EDAD+" int, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
 				C_DIRECTOR+" text, "+C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");
+			*/
 		}
 		
 		@Override

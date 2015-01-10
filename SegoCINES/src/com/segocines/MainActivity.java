@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -20,16 +21,16 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,39 +43,48 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
     private ListView drawerList;
     private ActionBarDrawerToggle drawerToggle;
     private DrawerAdapter adapter;
+    private ImageDownloader imgDown;
 
     private List<DrawerItem> dataList;
     
-    ListView list;
+    ListView pelisList;
     ImageView imgPrevia;
     TextView nombre;
     TextView cineA;
-    TextView horario;
+    TextView nombreOrig;
+    TextView director;
+    Cursor pelisCursor;
+	SimpleCursorAdapter pelisAdapter;
+	
+	private static BaseDeDatos BD;
+	//static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_HORARIOARTESIETE};
+	//static final int[] TO = {R.id.nombrePeli, R.id.horarioAPeli};
     
     ArrayList<HashMap<String, String>> oslist = new ArrayList<HashMap<String, String>>();
     
     //URL de donde recogemos la informacion de las peliculas en formato JSON
     
-    private static String url = "http://www.camaradesegovia.es/AutomaticApiRest/getData.php?t=pelicula&c=id_peli,imgPreviaPeli,imgPeli,nombrePeli,nombreOrigPeli,sinopsisPeli,edadPeli,horarioArtesietePeli,horarioLuzCastillaPeli,directorPeli,a%C3%B1oPeli,paisPeli,duracionPeli,generoPeli,trailerPeli";
+    //private static String url = "http://www.camaradesegovia.es/AutomaticApiRest/getData.php?t=pelicula&c=id_peli,imgPreviaPeli,imgPeli,nombrePeli,nombreOrigPeli,sinopsisPeli,edadPeli,horarioArtesietePeli,horarioLuzCastillaPeli,directorPeli,anyoPeli,paisPeli,duracionPeli,generoPeli,trailerPeli";
+    private static String url = "http://www.camaradesegovia.es/AutomaticApiRest/getData.php?t=pelicula&c=id_peli,nombrePeli,nombreOrigPeli,directorPeli";
     
     //Nombre de los nodos del JSON
     
     private static final String TAG_DATA = "data";
     private static final String TAG_ID = "id_peli";
-    private static final String TAG_IMGPREVIA = "imgPreviaPeli";
-    private static final String TAG_IMG = "imgPeli";
+    //private static final String TAG_IMGPREVIA = "imgPreviaPeli";
+    //private static final String TAG_IMG = "imgPeli";
     private static final String TAG_NOMBRE = "nombrePeli";
     private static final String TAG_NOMBREORIG = "nombreOrigPeli";
-    private static final String TAG_SINOPSIS = "sinopsisPeli";
-    private static final String TAG_EDAD = "edadPeli";
-    private static final String TAG_HORARIOARTESIETE = "horarioArtesietePeli";
-    private static final String TAG_HORARIOLUZCASTILLA = "horarioLuzCastillaPeli";
+    /*private static final String TAG_SINOPSIS = "sinopsisPeli";
+    private static final String TAG_EDAD = "edadPeli";*/
+    //private static final String TAG_HORARIOARTESIETE = "horarioArtesietePeli";
+    //private static final String TAG_HORARIOLUZCASTILLA = "horarioLuzCastillaPeli";
     private static final String TAG_DIRECTOR = "directorPeli";
-    private static final String TAG_ANYO = "anyoPeli";
+    /*private static final String TAG_ANYO = "anyoPeli";
     private static final String TAG_DURACION = "duracionPeli";
     private static final String TAG_PAIS = "paisPeli";
     private static final String TAG_GENERO = "generoPeli";
-    private static final String TAG_TRAILER = "trailerPeli";
+    private static final String TAG_TRAILER = "trailerPeli";*/
     
     JSONArray data = null;
     
@@ -124,16 +134,38 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
         };
 		
 			drawerLayout.setDrawerListener(drawerToggle);
-		
+			
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);	//añade el boton de volver al ActionBar
 		//getSupportActionBar().setHomeButtonEnabled(true);
     	
 		//Parte del codigo que obtendra las peliculas a traves de pulsar un boton, ademas llamamos al proceso en Background que 
 		//conseguira el JSON alojado en la url que le pasemos.
 		//Creamos tambien un hashmap para la posible implementacion de pulsar en una parte del list view y que se abra otro activity.
-        
+   
+		//Mostrar Peliculas
+		/*pelisList = (ListView) findViewById(R.id.list);
+
+        BD = new BaseDeDatos(this);
+
+		pelisCursor = BD.leerDatos();
+		startManagingCursor(pelisCursor);
+
+		pelisAdapter = new SimpleCursorAdapter(this, R.layout.formato_lista, pelisCursor, FROM, TO);
+		pelisList.setAdapter(pelisAdapter);*/
     }
     
+    /*@SuppressWarnings("deprecation")
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+
+		pelisCursor = BD.leerDatos();
+		startManagingCursor(pelisCursor);
+
+		pelisAdapter = new SimpleCursorAdapter(this, R.layout.formato_lista, pelisCursor, FROM, TO);
+		pelisList.setAdapter(pelisAdapter);
+	}*/
     
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
@@ -141,6 +173,19 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
         super.onPostCreate(savedInstanceState);
 
         drawerToggle.syncState();
+    }
+    
+    @Override
+	public void onBackPressed()
+    {
+    	if(drawerLayout.isDrawerOpen(Gravity.START))
+    	{
+    		drawerLayout.closeDrawer(Gravity.LEFT);
+    	}
+    	else
+    	{
+    		super.onBackPressed();
+    	}
     }
 	
 	@Override
@@ -239,10 +284,9 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 		{
 			super.onPreExecute();     
 			
-			imgPrevia = (ImageView)findViewById(R.id.imgPreviaPeli);
 			nombre = (TextView)findViewById(R.id.nombrePeli);
-			cineA = (TextView)findViewById(R.id.cineAPeli);
-			horario = (TextView)findViewById(R.id.horarioAPeli);
+			nombreOrig = (TextView)findViewById(R.id.nombreOrigPeli);
+			director = (TextView)findViewById(R.id.directorPeli);
 	            
 	        pDialog = new ProgressDialog(MainActivity.this);   
 	        pDialog.setMessage("Recogiendo datos...");
@@ -276,20 +320,20 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    			// Guardando el  JSON en una Variable
 	    			
 	    			int idPeli = c.getInt(TAG_ID);
-	    			String imgPreviaPeli = c.getString(TAG_IMGPREVIA);
-	    			String imgPeli = c.getString(TAG_IMG);
+	    			//String imgPreviaPeli = c.getString(TAG_IMGPREVIA);
+	    			//String imgPeli = c.getString(TAG_IMG);
 	    			String nombrePeli = c.getString(TAG_NOMBRE);
 	    			String nombreOrigPeli = c.getString(TAG_NOMBREORIG);
-	    			String sinopsisPeli = c.getString(TAG_SINOPSIS);
-	    			int edadPeli = c.getInt(TAG_EDAD);
-	    			String horarioArtesietePeli = c.getString(TAG_HORARIOARTESIETE);
-	    			String horarioLuzCastillaPeli = c.getString(TAG_HORARIOLUZCASTILLA);
+	    			/*String sinopsisPeli = c.getString(TAG_SINOPSIS);
+	    			int edadPeli = c.getInt(TAG_EDAD);*/
+	    			//String horarioArtesietePeli = c.getString(TAG_HORARIOARTESIETE);
+	    			//String horarioLuzCastillaPeli = c.getString(TAG_HORARIOLUZCASTILLA);
 	    			String directorPeli = c.getString(TAG_DIRECTOR);
-	    			int añoPeli = c.getInt(TAG_ANYO);
+	    			/*int anyoPeli = c.getInt(TAG_ANYO);
 	    			String paisPeli = c.getString(TAG_PAIS);
 	    			int duracionPeli = c.getInt(TAG_DURACION);
 	    			String generoPeli = c.getString(TAG_GENERO);
-	    			String trailerPeli = c.getString(TAG_TRAILER);
+	    			String trailerPeli = c.getString(TAG_TRAILER);*/
 	    			
 	    			//Almacenando el JSON en la base de datos
 	    			
@@ -301,33 +345,35 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    			
 	    			appSegoCines = ((ApplicationSegoCines) getApplication());
 	    			
-	    			appSegoCines.escribirDatos(idPeli, imgPreviaPeli, imgPeli, nombrePeli, nombreOrigPeli, sinopsisPeli, edadPeli, horarioArtesietePeli, horarioLuzCastillaPeli, directorPeli, añoPeli, paisPeli, duracionPeli, generoPeli, trailerPeli);
+	    			appSegoCines.escribirDatos(idPeli, nombrePeli, nombreOrigPeli, directorPeli);
+	    			//appSegoCines.escribirDatos(idPeli, imgPreviaPeli, imgPeli, nombrePeli, nombreOrigPeli, sinopsisPeli, edadPeli, horarioArtesietePeli, horarioLuzCastillaPeli, directorPeli, anyoPeli, paisPeli, duracionPeli, generoPeli, trailerPeli);
 	    			
 	    			
 	    			// Añadiendo valores al HashMap, de forma clave => valor
 	    			HashMap<String, String> map = new HashMap<String, String>();
 	                
 	    			map.put(TAG_NOMBRE, nombrePeli);
+	    			map.put(TAG_NOMBREORIG, nombreOrigPeli);
+	    			map.put(TAG_DIRECTOR, directorPeli);
 	                
 	    			oslist.add(map);
-	                
-	    			list = (ListView)findViewById(R.id.list);
+	    			
+	    			pelisList = (ListView)findViewById(R.id.list);
 	                
 	    			ListAdapter adapter = new SimpleAdapter(MainActivity.this, oslist, R.layout.formato_lista,
-	    				new String[] {TAG_NOMBRE},
-	    				new int[] {R.id.nombrePeli}
+	    				new String[] {TAG_NOMBRE, TAG_NOMBREORIG, TAG_DIRECTOR},
+	    				new int[] {R.id.nombrePeli, R.id.nombreOrigPeli, R.id.directorPeli}
 	    			);
 	                
-	    			list.setAdapter(adapter);
+	    			pelisList.setAdapter(adapter);
 	                
-	    			list.setOnItemClickListener(new AdapterView.OnItemClickListener()
+	    			pelisList.setOnItemClickListener(new AdapterView.OnItemClickListener()
 	    			{
 	    				@Override
 	    				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	    				{
 	    					Toast.makeText(MainActivity.this, "Has clickado en "+oslist.get(+position).get("nombrePeli"), Toast.LENGTH_SHORT).show();																					
 	    				}
-	                    
 	    			});
 	                
 	    		}//FIN-for

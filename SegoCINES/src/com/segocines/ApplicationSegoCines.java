@@ -23,7 +23,8 @@ public class ApplicationSegoCines extends Application
 	}
 	
 	
-	public synchronized void escribirDatos(int idPeli, String imgPreviaPeli, String imgPeli, String nombrePeli, String nombreOrigPeli, String sinopsisPeli, int edadPeli, String horarioArtesietePeli, String horarioLuzCastillaPeli, String directorPeli, int añoPeli, String paisPeli, int duracionPeli, String generoPeli, String trailerPeli)
+	//public synchronized void escribirDatos(int idPeli, String imgPreviaPeli, String imgPeli, String nombrePeli, String nombreOrigPeli, String sinopsisPeli, int edadPeli, String horarioArtesietePeli, String horarioLuzCastillaPeli, String directorPeli, int anyoPeli, String paisPeli, int duracionPeli, String generoPeli, String trailerPeli)
+	public synchronized void escribirDatos(int idPeli, String nombrePeli, String nombreOrigPeli, String directorPeli) 
 	{
 		Log.d(TAG, "Añadiendo peliculas");
 		
@@ -33,9 +34,10 @@ public class ApplicationSegoCines extends Application
 		
 				values.clear();
 				values.put(BaseDeDatos.C_ID, idPeli);
-				values.put(BaseDeDatos.C_IMGPREVIA, imgPreviaPeli);
 				values.put(BaseDeDatos.C_NOMBRE, nombrePeli);
-				
+				values.put(BaseDeDatos.C_NOMBREORIG, nombreOrigPeli);
+				values.put(BaseDeDatos.C_DIRECTOR, directorPeli);
+							
 			this.getStatusData().insertOrIgnore(values);
 			
 		} 
