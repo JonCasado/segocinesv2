@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -23,8 +22,8 @@ public class ArteSiete extends ActionBarActivity
 	Cursor cursor;
 	SimpleCursorAdapter adapter;
 
-	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_NOMBREORIG, BaseDeDatos.C_DIRECTOR};
-	static final int[] TO = {R.id.nombrePeli, R.id.nombreOrigPeli, R.id.directorPeli};
+	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_HORARIOARTESIETE};
+	static final int[] TO = {R.id.nombrePeli, R.id.horarioPeli};
 	private static BaseDeDatos BD;
 	
 	@Override
@@ -34,8 +33,6 @@ public class ArteSiete extends ActionBarActivity
         setContentView(R.layout.activity_artesiete);  
         
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        
-        Log.i("DATO", "hola");
         
         listArtesiete = (ListView) findViewById(R.id.listArtesiete);
 
@@ -59,7 +56,7 @@ public class ArteSiete extends ActionBarActivity
 		cursor = BD.leerDatos();
 		startManagingCursor(cursor);
 
-		adapter = new SimpleCursorAdapter(this, R.layout.formato_lista, cursor, FROM, TO);
+		adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_cines, cursor, FROM, TO);
 		listArtesiete.setAdapter(adapter);
 	}
 	
