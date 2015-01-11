@@ -7,6 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+
+/*************************************************************/
+/** @Author = ("Joaquin Casas", "Jon Casado")				**/
+/*************************************************************/
+///////////////////////////////////////////////////////////////
+/* Activity que muestra la cartelera de los cines Artesiete. */
+///////////////////////////////////////////////////////////////
 public class BaseDeDatos
 {
 	private static final String C = BaseDeDatos.class.getSimpleName();
@@ -29,10 +36,12 @@ public class BaseDeDatos
     static final String C_GENERO = "generoPeli";
     static final String C_TRAILER = "trailerPeli";
 	
-	//Subclase DbHelper
+    
+    ///////////////////////////////////////////////////////////////
+    /* SubClase que permite crear y actualizar la BD. 			 */
+    ///////////////////////////////////////////////////////////////
 	class DbHelper extends SQLiteOpenHelper
 	{
-		//Constructor
 		public DbHelper(Context context)
 		{
 			super(context, DATABASE, null, VERSION);
@@ -43,8 +52,9 @@ public class BaseDeDatos
 		{			
 			Log.i(C, "Creating database: "+ DATABASE);
 			
-			db.execSQL("drop table if exists " + TABLE);
+			db.execSQL("drop table if exists " + TABLE);	//elimina la BD
 			
+			//Crea la BD
 			db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
 				C_IMGPREVIA+" text, "+C_IMG+" text, "+
 				C_NOMBRE+" text, "+C_NOMBREORIG+" text, "
@@ -59,9 +69,8 @@ public class BaseDeDatos
 		
 			this.onCreate(db);
 		}
-	}//Fin de la subclase DbHelper
+	}//FIN-DbHelper
 	
-	//Métodos
 	
 	public final DbHelper dbHelper;
 	
@@ -77,6 +86,10 @@ public class BaseDeDatos
 		this.dbHelper.close();
 	}
 		
+	
+	///////////////////////////////////////////////////////////////
+	/* Escribe en la BD los values. 							 */
+	///////////////////////////////////////////////////////////////
 	public void insertOrIgnore(ContentValues values)
 	{
 		Log.d(C, "insertOrIgnore on " + values);
@@ -102,10 +115,15 @@ public class BaseDeDatos
 		}
 	}
 	
+	
+	///////////////////////////////////////////////////////////////
+	/* Lee los datos de la BD. 									 */
+	///////////////////////////////////////////////////////////////
 	public Cursor leerDatos()
 	{
 		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
 		
 		return db.query(TABLE, null, null, null, null, null, null);
 	}
+	//FIN-leerDatos
 }

@@ -14,6 +14,7 @@
     <string name="cineArtesiete">Artesiete</string>
     <string name="cineLuzCastilla">Luz de Castilla</string>
     <string name="divider"> | </string>
+    <string name="separator">separador</string>
     
     <!-- PELICULA -->
     <string name="imgPeli">imagen</string>
@@ -27,8 +28,9 @@
     <string name="paisPeli">País: </string>
     <string name="anyoPeli">Año: </string>
     <string name="generoPeli">Género: </string>
-    <string name="edadPeli">No recomendada para menores de </string>
+    <string name="edadPeli">Calificación: </string>
     <string name="anyos"> años.</string>
+    <string name="minutos"> min</string>
     <string name="trailerPeli">Trailer</string>
     
     <!-- NAVIGATION DRAWER -->

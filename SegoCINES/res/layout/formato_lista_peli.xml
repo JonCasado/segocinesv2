@@ -103,11 +103,20 @@
         android:layout_toEndOf="@+id/duracion"
         android:layout_below="@+id/anyo" >
     </TextView>
+    <TextView
+        android:id="@+id/duracionPelimin"
+        android:text="@string/minutos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/duracionPeli"
+        android:layout_toEndOf="@+id/duracionPeli"
+        android:layout_below="@+id/anyo" >
+    </TextView>
     
     <!-- Pais -->
     <TextView
         android:id="@+id/pais"
-        android:text="@string/anyoPeli"
+        android:text="@string/paisPeli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imgPeli"
@@ -151,7 +160,7 @@
     <!-- Edad -->
     <TextView
         android:id="@+id/edad"
-        android:text="@string/anyoPeli"
+        android:text="@string/edadPeli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imgPeli"
@@ -197,22 +206,37 @@
         android:id="@+id/trailer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sinopsis"
+        android:layout_below="@+id/sinopsisPeli"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginEnd="15dp" >
     </VideoView>
+    
+    <ImageView
+        android:id="@+id/separator"
+        android:contentDescription="@string/separator"
+        android:src="@drawable/lv_separator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trailer"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" >
+    </ImageView>
  
-    <!-- Artesiete -->
+    <!-- Cine Artesiete -->
     <TextView
         android:id="@+id/cineAPeli"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sinopsis"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/imgPeli"
-        android:layout_toEndOf="@+id/imgPeli" >
+        android:layout_below="@id/separator"
+        android:text="@string/cineArtesiete"
+        android:textColor="#ff501f"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp" >
     </TextView>
  
     <!-- Horario Artesiete -->
@@ -221,20 +245,25 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/cineAPeli"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/imgPeli"
-        android:layout_toEndOf="@+id/imgPeli" >
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp" >
     </TextView>
     
-    <!-- LuzCastilla -->
+    <!-- Cine Luz de Castilla -->
     <TextView
         android:id="@+id/cineBPeli"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/horarioAPeli"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/imgPeli"
-        android:layout_toEndOf="@+id/imgPeli" >
+        android:text="@string/cineLuzCastilla"
+        android:textColor="#1cb1dc"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp" >
     </TextView>
  
     <!-- Horario LuzCastilla -->
@@ -243,8 +272,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/cineBPeli"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/imgPeli"
-        android:layout_toEndOf="@+id/imgPeli" >
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp" >
     </TextView>
 </RelativeLayout>

@@ -3,12 +3,12 @@ package com.segocines;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.AdapterView.OnItemClickListener;
+
 
 /*************************************************************/
 /** @Author = ("Joaquin Casas", "Jon Casado")				**/
@@ -16,7 +16,7 @@ import android.widget.SimpleCursorAdapter;
 ///////////////////////////////////////////////////////////////
 /* Activity que muestra la cartelera de los cines Artesiete. */
 ///////////////////////////////////////////////////////////////
-public class ArteSiete extends ActionBarActivity
+public class ArteSiete extends ActionBar
 {	
 	ListView listArtesiete;
 	Cursor cursor;
@@ -32,7 +32,7 @@ public class ArteSiete extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artesiete);  
         
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);		//permite volver a la pantalla principal
         
         listArtesiete = (ListView) findViewById(R.id.listArtesiete);
 
@@ -53,35 +53,20 @@ public class ArteSiete extends ActionBarActivity
 	{
 		super.onResume();
 
-		cursor = BD.leerDatos();
+		cursor = BD.leerDatos();		//lee los datos de la BD
 		startManagingCursor(cursor);
 
+		//Muestra los datos especificados en FROM, en formato_lista_artesiete.xml
 		adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_artesiete, cursor, FROM, TO);
 		listArtesiete.setAdapter(adapter);
-	}
-	
-	//MENUACTIONBAR
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.menu, menu);
-		
-		return super.onCreateOptionsMenu(menu);
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{			
-		switch(item.getItemId())
+		listArtesiete.setOnItemClickListener(new OnItemClickListener()
 		{
-			case R.id.action_Settings:
-				NavUtils.navigateUpFromSameTask(this);
-				startActivity(new Intent(this, PrefsActivity.class));
-				return true;
-				
-			default:
-				return super.onOptionsItemSelected(item);
-		}
+			  @Override
+			  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+			  {
+				  Intent intent = new Intent(ArteSiete.this, Pelicula.class);
+				  startActivity(intent);
+			  }
+		});
 	}
-	//FIN-MENUACTIONBAR
 }

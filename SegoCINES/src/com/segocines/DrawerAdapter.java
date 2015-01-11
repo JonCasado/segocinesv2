@@ -16,7 +16,7 @@ import android.widget.TextView;
 /** @Author = ("Joaquin Casas", "Jon Casado")				**/
 /*************************************************************/
 ///////////////////////////////////////////////////////////////
-/* Añade la lista de items al panel DrawerNavigation. 		 */
+/* Añade la lista de items al panel NavigationDrawer. 		 */
 ///////////////////////////////////////////////////////////////
 public class DrawerAdapter extends ArrayAdapter<DrawerItem>
 {
@@ -57,8 +57,8 @@ public class DrawerAdapter extends ArrayAdapter<DrawerItem>
  
             DrawerItem dItem = (DrawerItem) this.drawerItemList.get(position);
  
-            drawerHolder.icon.setImageDrawable(view.getResources().getDrawable(dItem.getImgResID()));
-            drawerHolder.ItemName.setText(dItem.getItemName());
+            drawerHolder.icon.setImageDrawable(view.getResources().getDrawable(dItem.getImgResID()));	//icono
+            drawerHolder.ItemName.setText(dItem.getItemName());											//texto
  
             return view;
       }

@@ -4,14 +4,22 @@ import android.app.Application;
 import android.content.ContentValues;
 import android.util.Log;
 
+
+/*************************************************************/
+/** @Author = ("Joaquin Casas", "Jon Casado")				**/
+/*************************************************************/
+///////////////////////////////////////////////////////////////
+/* Activity que muestra la cartelera de los cines Artesiete. */
+///////////////////////////////////////////////////////////////
 public class ApplicationSegoCines extends Application
 {
 	private static final String TAG = ApplicationSegoCines.class.getSimpleName();
 	
-	public BaseDeDatos segocinesData;
+	public BaseDeDatos segocinesData;	//Base de Datos
 	
-	//Creamos el método getStatusData que nos devuelve el objeto
-	//BaseDeDatos si existe (y si no existe lo crea).
+	///////////////////////////////////////////////////////////////
+	/* Devuelve el objeto BaseDeDatos.							 */
+	///////////////////////////////////////////////////////////////
 	public BaseDeDatos getStatusData()
 	{
 		segocinesData = new BaseDeDatos(this);
@@ -20,10 +28,11 @@ public class ApplicationSegoCines extends Application
 	}
 	
 	
+	///////////////////////////////////////////////////////////////
+	/* Inserta en la BD los datos de las peliculas.				 */
+	///////////////////////////////////////////////////////////////
 	public synchronized void escribirDatos(int idPeli, String imgPreviaPeli, String imgPeli, String nombrePeli, String nombreOrigPeli, String sinopsisPeli, int edadPeli, String horarioArtesietePeli, String horarioLuzCastillaPeli, String directorPeli, int anyoPeli, String paisPeli, int duracionPeli, String generoPeli, String trailerPeli)
-	{
-		Log.d(TAG, "Añadiendo peliculas");
-		
+	{		
 		try
 		{
 			ContentValues values = new ContentValues();
@@ -55,4 +64,5 @@ public class ApplicationSegoCines extends Application
 		
 		segocinesData.close();		
 	}
+	//FIN-escribirDatos
 }

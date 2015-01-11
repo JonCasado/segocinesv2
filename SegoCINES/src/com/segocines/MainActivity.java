@@ -1,7 +1,6 @@
 package com.segocines;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -31,31 +30,41 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-//MAINACTIVITY
+
+/*************************************************************/
+/** @Author = ("Joaquin Casas", "Jon Casado")				**/
+/*************************************************************/
+///////////////////////////////////////////////////////////////
+/* Activity principal que muestra todas las peliculas		 */
+/* de la cartelera de los cines de Segovia.					 */
+///////////////////////////////////////////////////////////////
 public class MainActivity extends ActionBarActivity implements OnSharedPreferenceChangeListener
 {
+	//Preferencias Compartidas
 	SharedPreferences prefs;
 	
+	//NavigationDrawer
 	private DrawerLayout drawerLayout;
     private ListView drawerList;
     private ActionBarDrawerToggle drawerToggle;
     private DrawerAdapter adapter;
-    //private ImageDownloader imgDown;
-
     private List<DrawerItem> dataList;
     
+    //ListView peliculas
     ListView pelisList;
     Cursor pelisCursor;
 	SimpleCursorAdapter pelisAdapter;
+	//private ImageDownloader imgDown;
 	
+	//Base de Datos
 	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_HORARIOARTESIETE, BaseDeDatos.C_HORARIOLUZCASTILLA};
 	static final int[] TO = {R.id.nombrePeli, R.id.horarioAPeli, R.id.horarioBPeli};
 	private static BaseDeDatos BD;
+	public ApplicationSegoCines appSegoCines;
     
-    ArrayList<HashMap<String, String>> oslist = new ArrayList<HashMap<String, String>>();
+    //ArrayList<HashMap<String, String>> oslist = new ArrayList<HashMap<String, String>>();
     
     //URL de donde recogemos la informacion de las peliculas en formato JSON
-    
     private static String url = "http://www.camaradesegovia.es/AutomaticApiRest/getData.php?t=pelicula&c=id_peli,imgPreviaPeli,imgPeli,nombrePeli,nombreOrigPeli,sinopsisPeli,edadPeli,horarioArtesietePeli,horarioLuzCastillaPeli,directorPeli,anyoPeli,paisPeli,duracionPeli,generoPeli,trailerPeli";
     
     //Nombre de los nodos del JSON
@@ -77,9 +86,12 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
     private static final String TAG_TRAILER = "trailerPeli";
     
     JSONArray data = null;
-    
-    public ApplicationSegoCines appSegoCines;
 	
+    
+	///////////////////////////////////////////////////////////////
+	/* - Preferencias compartidas.								 */
+    /* - NavigationDrawer.										 */
+	///////////////////////////////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -123,20 +135,23 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 		
 			drawerLayout.setDrawerListener(drawerToggle);
 			
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);	//añade el boton de volver al ActionBar
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);	//añade el boton de volver, al ActionBar
 		//getSupportActionBar().setHomeButtonEnabled(true);
-    	
-		//Parte del codigo que obtendra las peliculas a traves de pulsar un boton, ademas llamamos al proceso en Background que 
-		//conseguira el JSON alojado en la url que le pasemos.
-		//Creamos tambien un hashmap para la posible implementacion de pulsar en una parte del list view y que se abra otro activity.
     }
+    //FIN-onCreate
     
-    //MUESTRA LAS PELICULAS
-    @SuppressWarnings("deprecation")
+    
+	///////////////////////////////////////////////////////////////
+	/* Muestra las peliculas en un ListView.					 */
+	///////////////////////////////////////////////////////////////
+    @SuppressLint("RtlHardcoded")
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
+		
+		drawerLayout.closeDrawer(Gravity.LEFT);	//oculta el NavigationDrawer si estaba abierto
 
 		pelisList = (ListView) findViewById(R.id.list);
 
@@ -157,6 +172,7 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 			  }
 		});
 	}
+    //FIN-onResume
     
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
@@ -166,6 +182,10 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
         drawerToggle.syncState();
     }
     
+    
+	///////////////////////////////////////////////////////////////
+	/* Indica el evento del boton de "Atras".					 */
+	///////////////////////////////////////////////////////////////
     @SuppressLint("RtlHardcoded")
 	@Override
 	public void onBackPressed()
@@ -207,10 +227,12 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 		
 		switch(item.getItemId())
 		{
+			//AJUSTES
 			case R.id.action_Settings:
 				startActivity(new Intent(this, PrefsActivity.class));
 				return true;
 				
+			//ACTUALIZAR
 			case R.id.action_Upgrade:
 				new JSONParse().execute();
 				return true;
@@ -229,6 +251,11 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	}
 	
 	
+	
+	///////////////////////////////////////////////////////////////
+	/* Indica los eventos de los elementos del panel			 */
+	/* NavigationDrawer.										 */
+	///////////////////////////////////////////////////////////////
 	private class DrawerItemClickListener implements ListView.OnItemClickListener
 	{
 		@Override
@@ -238,21 +265,25 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 			
 			switch(position)
 			{
+				//ARTESIETE
 				case 0:
 					intent = new Intent(MainActivity.this, ArteSiete.class);
 		            startActivity(intent);
 					break;
 					
+				//LUZ DE CASTILLA
 				case 1:
 					intent = new Intent(MainActivity.this, LuzCastilla.class);
 		            startActivity(intent);
 					break;
 					
+				//AJUSTES
 				case 2:
 					intent = new Intent(MainActivity.this, PrefsActivity.class);
 		            startActivity(intent);
 					break;
 					
+				//AYUDA
 				case 3:
 					//mensaje de F.A.Q.
 					break;
@@ -265,8 +296,8 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	}
 	
 	
-	//Tarea asincrona que trata de recoger los datos de la direccion dada
-	
+	//Tarea asincrona que trata de recoger los datos de la direccion dada a traves de pulsar un boton,
+	//ademas llamamos al proceso en Background que conseguira el JSON alojado en la url que le pasemos.
 	private class JSONParse extends AsyncTask<String, String, JSONObject>
 	{
 		private ProgressDialog pDialog;
@@ -323,17 +354,11 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    			String trailerPeli = c.getString(TAG_TRAILER);
 	    			
 	    			//Almacenando el JSON en la base de datos
-	    			
-	    			
 	    			// Iteramos sobre todos los componentes de timeline
-	    			
-	    			
 	    			// Insertar en la base de datos mediante el método escrito en el application
 	    			
 	    			appSegoCines = ((ApplicationSegoCines) getApplication());
-	    			
 	    			appSegoCines.escribirDatos(idPeli, imgPreviaPeli, imgPeli, nombrePeli, nombreOrigPeli, sinopsisPeli, edadPeli, horarioArtesietePeli, horarioLuzCastillaPeli, directorPeli, anyoPeli, paisPeli, duracionPeli, generoPeli, trailerPeli);
-	    			
 	    			
 	    			// Añadiendo valores al HashMap, de forma clave => valor
 	    			/*HashMap<String, String> map = new HashMap<String, String>();
@@ -361,9 +386,12 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    				}
 	    			});*/
 	                
-	    		}//FIN-for
+	    		}
+	    		//FIN-for
        
 	    	} catch (JSONException e) {e.printStackTrace();}
 	    }
+	    //FIN-onPostExecute
 	}
+	//FIN-JSONParse
 }
