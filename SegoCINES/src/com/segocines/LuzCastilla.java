@@ -3,12 +3,11 @@ package com.segocines;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 
 
 /*************************************************************/
@@ -18,7 +17,7 @@ import android.widget.SimpleCursorAdapter;
 /* Activity que muestra la cartelera de los cines			 *
  * Luz de Castilla. 										 */
 ///////////////////////////////////////////////////////////////
-public class LuzCastilla extends ActionBarActivity
+public class LuzCastilla extends ActionBar
 {	
 	ListView listLuzCastilla;
 	Cursor cursor;
@@ -34,7 +33,7 @@ public class LuzCastilla extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_luzcastilla);
         
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);			//permite volver a la pantalla principal
         
 		listLuzCastilla = (ListView) findViewById(R.id.listLuzCastilla);
 	
@@ -55,35 +54,20 @@ public class LuzCastilla extends ActionBarActivity
 	{
 		super.onResume();
 	
-		cursor = BD.leerDatos();
+		cursor = BD.leerDatos();		//lee los datos de la BD
 		startManagingCursor(cursor);
 	
+		//Muestra los datos obtenidos en FROM, en formato_lista_luzcastilla.xml
 		adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_luzcastilla, cursor, FROM, TO);
 		listLuzCastilla.setAdapter(adapter);
-	}
-	
-	//MENUACTIONBAR
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.menu, menu);
-		
-		return super.onCreateOptionsMenu(menu);
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{			
-		switch(item.getItemId())
+		listLuzCastilla.setOnItemClickListener(new OnItemClickListener()
 		{
-			case R.id.action_Settings:
-				NavUtils.navigateUpFromSameTask(this);
-				startActivity(new Intent(this, PrefsActivity.class));
-				return true;
-				
-			default:
-				return super.onOptionsItemSelected(item);
-		}
+			  @Override
+			  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+			  {
+				  Intent intent = new Intent(LuzCastilla.this, Pelicula.class);
+				  startActivity(intent);
+			  }
+		});
 	}
-	//FIN-MENUACTIONBAR
 }

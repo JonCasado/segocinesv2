@@ -27,6 +27,21 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
+/*
+ * Copyright (C) 2010 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 /**
  * This helper class download images from the Internet and binds those with the provided ImageView.
  *
@@ -35,7 +50,11 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * A local cache of downloaded images is maintained internally to improve performance.
  */
-public class ImageDownloader {
+///////////////////////////////////////////////////////////////
+/* Permite descargar imagenes y mostrarlas en ImageView. */
+///////////////////////////////////////////////////////////////
+public class ImageDownloader
+{
     private static final String LOG_TAG = "ImageDownloader";
 
     public enum Mode { NO_ASYNC_TASK, NO_DOWNLOADED_DRAWABLE, CORRECT }
@@ -49,39 +68,39 @@ public class ImageDownloader {
      * @param url The URL of the image to download.
      * @param imageView The ImageView to bind the downloaded image to.
      */
-    public void download(String url, ImageView imageView) {
+    public void download(String url, ImageView imageView)
+    {
         resetPurgeTimer();
         Bitmap bitmap = getBitmapFromCache(url);
 
-        if (bitmap == null) {
+        if (bitmap == null)
+        {
             forceDownload(url, imageView);
-        } else {
+        }
+        else
+        {
             cancelPotentialDownload(url, imageView);
             imageView.setImageBitmap(bitmap);
         }
     }
 
-    /*
-     * Same as download but the image is always downloaded and the cache is not used.
-     * Kept private at the moment as its interest is not clear.
-       private void forceDownload(String url, ImageView view) {
-          forceDownload(url, view, null);
-       }
-     */
-
     /**
      * Same as download but the image is always downloaded and the cache is not used.
      * Kept private at the moment as its interest is not clear.
      */
-    private void forceDownload(String url, ImageView imageView) {
+    private void forceDownload(String url, ImageView imageView)
+    {
         // State sanity: url is guaranteed to never be null in DownloadedDrawable and cache keys.
-        if (url == null) {
+        if (url == null)
+        {
             imageView.setImageDrawable(null);
             return;
         }
 
-        if (cancelPotentialDownload(url, imageView)) {
-            switch (mode) {
+        if (cancelPotentialDownload(url, imageView))
+        {
+            switch (mode)
+            {
                 case NO_ASYNC_TASK:
                     Bitmap bitmap = downloadBitmap(url);
                     addBitmapToCache(url, bitmap);
@@ -111,14 +130,20 @@ public class ImageDownloader {
      * Returns false if the download in progress deals with the same url. The download is not
      * stopped in that case.
      */
-    private static boolean cancelPotentialDownload(String url, ImageView imageView) {
+    private static boolean cancelPotentialDownload(String url, ImageView imageView)
+    {
         BitmapDownloaderTask bitmapDownloaderTask = getBitmapDownloaderTask(imageView);
 
-        if (bitmapDownloaderTask != null) {
+        if (bitmapDownloaderTask != null)
+        {
             String bitmapUrl = bitmapDownloaderTask.url;
-            if ((bitmapUrl == null) || (!bitmapUrl.equals(url))) {
+            
+            if ((bitmapUrl == null) || (!bitmapUrl.equals(url)))
+            {
                 bitmapDownloaderTask.cancel(true);
-            } else {
+            }
+            else
+            {
                 // The same URL is already being downloaded.
                 return false;
             }
@@ -131,10 +156,14 @@ public class ImageDownloader {
      * @return Retrieve the currently active download task (if any) associated with this imageView.
      * null if there is no such task.
      */
-    private static BitmapDownloaderTask getBitmapDownloaderTask(ImageView imageView) {
-        if (imageView != null) {
+    private static BitmapDownloaderTask getBitmapDownloaderTask(ImageView imageView)
+    {
+        if (imageView != null)
+        {
             Drawable drawable = imageView.getDrawable();
-            if (drawable instanceof DownloadedDrawable) {
+            
+            if (drawable instanceof DownloadedDrawable)
+            {
                 DownloadedDrawable downloadedDrawable = (DownloadedDrawable)drawable;
                 return downloadedDrawable.getBitmapDownloaderTask();
             }
@@ -142,34 +171,42 @@ public class ImageDownloader {
         return null;
     }
 
-    Bitmap downloadBitmap(String url) {
+    Bitmap downloadBitmap(String url)
+    {
 
         // AndroidHttpClient is not allowed to be used from the main thread
-        final HttpClient client = (mode == Mode.NO_ASYNC_TASK) ? new DefaultHttpClient() :
-            AndroidHttpClient.newInstance("Android");
+        final HttpClient client = (mode == Mode.NO_ASYNC_TASK) ? new DefaultHttpClient() : AndroidHttpClient.newInstance("Android");
         final HttpGet getRequest = new HttpGet(url);
 
-        try {
+        try
+        {
             HttpResponse response = client.execute(getRequest);
             final int statusCode = response.getStatusLine().getStatusCode();
-            if (statusCode != HttpStatus.SC_OK) {
-                Log.w("ImageDownloader", "Error " + statusCode +
-                        " while retrieving bitmap from " + url);
+            
+            if (statusCode != HttpStatus.SC_OK)
+            {
+                Log.w("ImageDownloader", "Error " + statusCode + " while retrieving bitmap from " + url);
                 return null;
             }
 
             final HttpEntity entity = response.getEntity();
-            if (entity != null) {
+            if (entity != null)
+            {
                 InputStream inputStream = null;
-                try {
+                try
+                {
                     inputStream = entity.getContent();
                     // return BitmapFactory.decodeStream(inputStream);
                     // Bug on slow connections, fixed in future release.
                     return BitmapFactory.decodeStream(new FlushedInputStream(inputStream));
-                } finally {
-                    if (inputStream != null) {
+                }
+                finally
+                {
+                    if (inputStream != null)
+                    {
                         inputStream.close();
                     }
+                    
                     entity.consumeContent();
                 }
             }
@@ -182,8 +219,11 @@ public class ImageDownloader {
         } catch (Exception e) {
             getRequest.abort();
             Log.w(LOG_TAG, "Error while retrieving bitmap from " + url, e);
-        } finally {
-            if ((client instanceof AndroidHttpClient)) {
+        }
+        finally
+        {
+            if ((client instanceof AndroidHttpClient))
+            {
                 ((AndroidHttpClient) client).close();
             }
         }
@@ -193,8 +233,10 @@ public class ImageDownloader {
     /*
      * An InputStream that skips the exact number of bytes provided, unless it reaches EOF.
      */
-    static class FlushedInputStream extends FilterInputStream {
-        public FlushedInputStream(InputStream inputStream) {
+    static class FlushedInputStream extends FilterInputStream
+    {
+        public FlushedInputStream(InputStream inputStream)
+        {
             super(inputStream);
         }
 

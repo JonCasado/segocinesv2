@@ -19,7 +19,6 @@
         android:label="@string/app_name" 
         android:name=".ApplicationSegoCines">
         
-        
         <!-- SPLASH ACTIVITY -->
         <activity
             android:name=".SplashActivity"
@@ -75,7 +74,7 @@
         <activity
             android:name=".Pelicula"
             android:label=""
-           	android:parentActivityName=".MainActivity"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme" >
             
@@ -83,16 +82,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" >
-            </meta-data>
+            </meta-data>            
         </activity>
         
         <!-- AJUSTES -->
         <activity
             android:name=".PrefsActivity"
 			android:label="@string/action_Settings"
+			android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/MyPrefsTheme" >
+            android:theme="@style/CustomActionBarTheme" >
             
             <!-- Support 4.0 and lower -->
             <meta-data

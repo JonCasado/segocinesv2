@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
+
+/*************************************************************/
+/** @Author = ("Joaquin Casas", "Jon Casado")				**/
+/*************************************************************/
+///////////////////////////////////////////////////////////////
+/* Activity que muestra las preferencias compartidas.		 */
+///////////////////////////////////////////////////////////////
 public class PrefsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener
 {
 	private SharedPreferences prefs;
