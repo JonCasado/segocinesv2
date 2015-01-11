@@ -386,6 +386,7 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    				}
 	    			});*/
 	                
+	    			MainActivity.this.onResume();
 	    		}
 	    		//FIN-for
        
