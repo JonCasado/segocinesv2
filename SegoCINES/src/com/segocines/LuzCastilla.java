@@ -24,8 +24,8 @@ public class LuzCastilla extends ActionBarActivity
 	Cursor cursor;
 	SimpleCursorAdapter adapter;
 
-	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_HORARIOLUZCASTILLA};
-	static final int[] TO = {R.id.nombrePeli, R.id.horarioPeli};
+	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_DURACION, BaseDeDatos.C_PAIS, BaseDeDatos.C_EDAD, BaseDeDatos.C_HORARIOLUZCASTILLA};
+	static final int[] TO = {R.id.nombrePeli, R.id.duracionPeli, R.id.paisPeli, R.id.edadPeli, R.id.horarioPeli};
 	private static BaseDeDatos BD;
 	
 	@Override
@@ -58,7 +58,7 @@ public class LuzCastilla extends ActionBarActivity
 		cursor = BD.leerDatos();
 		startManagingCursor(cursor);
 	
-		adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_cines, cursor, FROM, TO);
+		adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_luzcastilla, cursor, FROM, TO);
 		listLuzCastilla.setAdapter(adapter);
 	}
 	

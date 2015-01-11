@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+    
+    <!-- Img Previa -->
+    <ImageView
+        android:id="@+id/imgPreviaPeli"
+        android:contentDescription="@string/imgPeli"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/imgpreviapeli_corazonesdeacero"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp" >
+    </ImageView>
+ 
+    <!-- Nombre -->
+    <TextView
+        android:id="@+id/nombrePeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imgPreviaPeli"
+        android:layout_toRightOf="@+id/imgPreviaPeli"
+        android:layout_toEndOf="@+id/imgPreviaPeli"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#3b5bb6" >
+    </TextView>
+    
+    <!-- Duracion -->
+    <TextView
+        android:id="@+id/duracionPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nombrePeli"
+        android:layout_toRightOf="@+id/imgPreviaPeli"
+        android:layout_toEndOf="@+id/imgPreviaPeli"
+        android:textColor="#9daddb" >
+    </TextView>
+    
+    <TextView
+        android:id="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nombrePeli"
+        android:layout_toRightOf="@+id/duracionPeli"
+        android:layout_toEndOf="@+id/duracionPeli"
+        android:text="@string/divider"
+        android:textStyle="bold"
+        android:textColor="#b8efff"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp" >
+    </TextView>
+    
+    <!-- Pais -->
+    <TextView
+        android:id="@+id/paisPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nombrePeli"
+        android:layout_toRightOf="@+id/divider"
+        android:layout_toEndOf="@+id/divider"
+        android:textColor="#9daddb" >
+    </TextView>
+    
+    <TextView
+        android:id="@+id/divider1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nombrePeli"
+        android:layout_toRightOf="@+id/paisPeli"
+        android:layout_toEndOf="@+id/paisPeli"
+        android:text="@string/divider"
+        android:textStyle="bold"
+        android:textColor="#b8efff"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp" >
+    </TextView>
+    
+    <!-- Edad -->
+    <TextView
+        android:id="@+id/edadPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nombrePeli"
+        android:layout_toRightOf="@+id/divider1"
+        android:layout_toEndOf="@+id/divider1"
+        android:textColor="#9daddb" >
+    </TextView>
+    
+    <TextView
+        android:id="@+id/divider2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nombrePeli"
+        android:layout_toRightOf="@+id/edadPeli"
+        android:layout_toEndOf="@+id/edadPeli"
+        android:text="@string/divider"
+        android:textStyle="bold"
+        android:textColor="#b8efff"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp" >
+    </TextView>
+ 
+    <!-- Horario Luz de Castilla -->
+    <TextView
+        android:id="@+id/horarioPeli"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/duracionPeli"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/imgPreviaPeli"
+        android:layout_toEndOf="@+id/imgPreviaPeli" >
+    </TextView>
+</RelativeLayout>
