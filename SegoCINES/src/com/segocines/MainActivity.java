@@ -168,6 +168,8 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 			  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			  {
 				  Intent intent = new Intent(MainActivity.this, Pelicula.class);
+				  intent.putExtra("id_peli", ""+id); //ID de la pelicula seleccionada
+				  
 				  startActivity(intent);
 			  }
 		});
@@ -343,7 +345,7 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    			String nombrePeli = c.getString(TAG_NOMBRE);
 	    			String nombreOrigPeli = c.getString(TAG_NOMBREORIG);
 	    			String sinopsisPeli = c.getString(TAG_SINOPSIS);
-	    			int edadPeli = c.getInt(TAG_EDAD);
+	    			String edadPeli = c.getString(TAG_EDAD);
 	    			String horarioArtesietePeli = c.getString(TAG_HORARIOARTESIETE);
 	    			String horarioLuzCastillaPeli = c.getString(TAG_HORARIOLUZCASTILLA);
 	    			String directorPeli = c.getString(TAG_DIRECTOR);

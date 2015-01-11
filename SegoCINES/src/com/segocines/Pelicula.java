@@ -48,8 +48,10 @@ public class Pelicula extends ActionBar
 	protected void onResume()
 	{
 		super.onResume();
+		
+		String id_peli = getIntent().getStringExtra("id_peli");	//recoge el ID de la pelicula seleccionada
 
-		cursor = BD.leerDatos();
+		cursor = BD.leerDatosPelicula(id_peli);
 		startManagingCursor(cursor);
 
 		adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_peli, cursor, FROM, TO);

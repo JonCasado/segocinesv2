@@ -65,6 +65,8 @@ public class ArteSiete extends ActionBar
 			  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			  {
 				  Intent intent = new Intent(ArteSiete.this, Pelicula.class);
+				  intent.putExtra("id_peli", ""+id); //ID de la pelicula seleccionada
+				  
 				  startActivity(intent);
 			  }
 		});
