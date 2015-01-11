@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+    
+    <!-- Img Previa -->
+    <ImageView
+        android:id="@+id/imgPeli"
+        android:contentDescription="@string/imgPeli"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/imgpeli_corazonesdeacero"
+        android:paddingTop="10dp" >
+    </ImageView>
+ 
+    <!-- Nombre -->
+    <TextView
+        android:id="@+id/titulo"
+        android:text="@string/tituloPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imgPeli"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli"
+        android:textStyle="bold"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp" >
+    </TextView>
+    <TextView
+        android:id="@+id/nombrePeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/titulo"
+        android:layout_toEndOf="@+id/titulo" >
+    </TextView>
+    
+    <!-- Nombre Original -->
+    <TextView
+        android:id="@+id/tituloOrig"
+        android:text="@string/tituloOrigPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli"
+        android:layout_below="@+id/titulo"
+        android:textStyle="bold"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp" >
+    </TextView>
+    <TextView
+        android:id="@+id/nombreOrigPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tituloOrig"
+        android:layout_toEndOf="@+id/tituloOrig"
+        android:layout_below="@+id/titulo" >
+    </TextView>
+    
+    <!-- Anyo -->
+    <TextView
+        android:id="@+id/anyo"
+        android:text="@string/anyoPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli"
+        android:layout_below="@+id/tituloOrig"
+        android:textStyle="bold"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp" >
+    </TextView>
+    <TextView
+        android:id="@+id/anyoPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/anyo"
+        android:layout_toEndOf="@+id/anyo"
+        android:layout_below="@+id/tituloOrig" >
+    </TextView>
+    
+    <!-- Duracion -->
+    <TextView
+        android:id="@+id/duracion"
+        android:text="@string/duracionPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli"
+        android:layout_below="@+id/anyo"
+        android:textStyle="bold"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp" >
+    </TextView>
+    <TextView
+        android:id="@+id/duracionPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/duracion"
+        android:layout_toEndOf="@+id/duracion"
+        android:layout_below="@+id/anyo" >
+    </TextView>
+    
+    <!-- Pais -->
+    <TextView
+        android:id="@+id/pais"
+        android:text="@string/anyoPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli"
+        android:layout_below="@+id/duracion"
+        android:textStyle="bold"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp" >
+    </TextView>
+    <TextView
+        android:id="@+id/paisPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/pais"
+        android:layout_toEndOf="@+id/pais"
+        android:layout_below="@+id/duracion" >
+    </TextView>
+    
+    <!-- Genero -->
+    <TextView
+        android:id="@+id/genero"
+        android:text="@string/generoPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli"
+        android:layout_below="@+id/pais"
+        android:textStyle="bold"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp" >
+    </TextView>
+    <TextView
+        android:id="@+id/generoPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/genero"
+        android:layout_toEndOf="@+id/genero"
+        android:layout_below="@+id/pais" >
+    </TextView>
+    
+    <!-- Edad -->
+    <TextView
+        android:id="@+id/edad"
+        android:text="@string/anyoPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli"
+        android:layout_below="@+id/genero"
+        android:textStyle="bold"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp" >
+    </TextView>
+    <TextView
+        android:id="@+id/edadPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/edad"
+        android:layout_toEndOf="@+id/edad"
+        android:layout_below="@+id/genero" >
+    </TextView>
+    
+    <!-- Sinopsis -->
+    <TextView
+        android:id="@+id/sinopsis"
+        android:text="@string/sinopsisPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgPeli"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp" >
+    </TextView>
+    <TextView
+        android:id="@+id/sinopsisPeli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sinopsis"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp" >
+    </TextView>
+    
+    <!-- TRAILER -->
+    <VideoView
+        android:id="@+id/trailer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sinopsis"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp" >
+    </VideoView>
+ 
+    <!-- Artesiete -->
+    <TextView
+        android:id="@+id/cineAPeli"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sinopsis"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli" >
+    </TextView>
+ 
+    <!-- Horario Artesiete -->
+    <TextView
+        android:id="@+id/horarioAPeli"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cineAPeli"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli" >
+    </TextView>
+    
+    <!-- LuzCastilla -->
+    <TextView
+        android:id="@+id/cineBPeli"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horarioAPeli"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli" >
+    </TextView>
+ 
+    <!-- Horario LuzCastilla -->
+    <TextView
+        android:id="@+id/horarioBPeli"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cineBPeli"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/imgPeli"
+        android:layout_toEndOf="@+id/imgPeli" >
+    </TextView>
+</RelativeLayout>

@@ -27,9 +27,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 
 //MAINACTIVITY
@@ -148,6 +147,15 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 		
 		pelisAdapter = new SimpleCursorAdapter(this, R.layout.formato_lista, pelisCursor, FROM, TO);
 		pelisList.setAdapter(pelisAdapter);
+		pelisList.setOnItemClickListener(new OnItemClickListener()
+		{
+			  @Override
+			  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+			  {
+				  Intent intent = new Intent(MainActivity.this, Pelicula.class);
+				  startActivity(intent);
+			  }
+		});
 	}
     
     @Override

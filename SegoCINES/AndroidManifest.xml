@@ -71,6 +71,21 @@
             </meta-data>
         </activity>
         
+        <!-- PELICULA -->
+        <activity
+            android:name=".Pelicula"
+            android:label=""
+           	android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme" >
+            
+            <!-- Support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" >
+            </meta-data>
+        </activity>
+        
         <!-- AJUSTES -->
         <activity
             android:name=".PrefsActivity"
