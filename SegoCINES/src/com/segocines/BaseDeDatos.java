@@ -126,4 +126,27 @@ public class BaseDeDatos
 		return db.query(TABLE, null, null, null, null, null, null);
 	}
 	//FIN-leerDatos
+	
+	
+	///////////////////////////////////////////////////////////////
+	/* Lee los datos de la BD. 									 */
+	///////////////////////////////////////////////////////////////
+	public Cursor leerDatosArtesiete()
+	{
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		
+		return db.query(TABLE, null, BaseDeDatos.C_HORARIOARTESIETE+" != 'No disponible'", null, null, null, null);
+	}
+	//FIN-leerDatos
+	
+	///////////////////////////////////////////////////////////////
+	/* Lee los datos de la BD. 									 */
+	///////////////////////////////////////////////////////////////
+	public Cursor leerDatosLuzCastilla()
+	{
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		
+		return db.query(TABLE, null, BaseDeDatos.C_HORARIOLUZCASTILLA+" != 'No disponible'", null, null, null, null);
+	}
+	//FIN-leerDatos
 }

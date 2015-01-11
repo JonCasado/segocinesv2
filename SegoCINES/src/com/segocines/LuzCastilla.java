@@ -54,7 +54,7 @@ public class LuzCastilla extends ActionBar
 	{
 		super.onResume();
 	
-		cursor = BD.leerDatos();		//lee los datos de la BD
+		cursor = BD.leerDatosLuzCastilla();		//lee los datos de la BD
 		startManagingCursor(cursor);
 	
 		//Muestra los datos obtenidos en FROM, en formato_lista_luzcastilla.xml
