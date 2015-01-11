@@ -48,7 +48,6 @@ public class DrawerAdapter extends ArrayAdapter<DrawerItem>
                   drawerHolder.icon = (ImageView) view.findViewById(R.id.drawer_icon);
  
                   view.setTag(drawerHolder);
- 
             }
             else
             {

@@ -58,7 +58,7 @@ public class BaseDeDatos
 			db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
 				C_IMGPREVIA+" text, "+C_IMG+" text, "+
 				C_NOMBRE+" text, "+C_NOMBREORIG+" text, "
-				+C_SINOPSIS+" text, "+C_EDAD+" int, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
+				+C_SINOPSIS+" text, "+C_EDAD+" text, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
 				C_DIRECTOR+" text, "+C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");
 		}
 		
@@ -102,7 +102,7 @@ public class BaseDeDatos
 		db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
 				C_IMGPREVIA+" text, "+C_IMG+" text, "+
 				C_NOMBRE+" text, "   +C_NOMBREORIG+" text, "+
-				C_SINOPSIS+" text, " +C_EDAD+" int, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
+				C_SINOPSIS+" text, " +C_EDAD+" text, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
 				C_DIRECTOR+" text, " +C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");
 		*/
 		try
@@ -147,6 +147,18 @@ public class BaseDeDatos
 		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
 		
 		return db.query(TABLE, null, BaseDeDatos.C_HORARIOLUZCASTILLA+" != 'No disponible'", null, null, null, null);
+	}
+	//FIN-leerDatos
+	
+	
+	///////////////////////////////////////////////////////////////
+	/* Lee los datos de la BD. 									 */
+	///////////////////////////////////////////////////////////////
+	public Cursor leerDatosPelicula(String id_peli)
+	{
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		
+		return db.query(TABLE, null, C_ID+" == '"+id_peli+"'", null, null, null, null);
 	}
 	//FIN-leerDatos
 }
