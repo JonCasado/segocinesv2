@@ -42,14 +42,24 @@
         android:layout_toEndOf="@+id/imgPreviaPeli"
         android:textColor="#9daddb" >
     </TextView>
+    <TextView
+        android:id="@+id/minutos"
+        android:text="@string/minutos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nombrePeli"
+        android:layout_toRightOf="@+id/duracionPeli"
+        android:layout_toEndOf="@+id/duracionPeli"
+        android:textColor="#9daddb" >
+    </TextView>
     
     <TextView
         android:id="@+id/divider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/nombrePeli"
-        android:layout_toRightOf="@+id/duracionPeli"
-        android:layout_toEndOf="@+id/duracionPeli"
+        android:layout_toRightOf="@+id/minutos"
+        android:layout_toEndOf="@+id/minutos"
         android:text="@string/divider"
         android:textStyle="bold"
         android:textColor="#ff977a"

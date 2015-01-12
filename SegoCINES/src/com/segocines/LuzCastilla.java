@@ -65,7 +65,7 @@ public class LuzCastilla extends ActionBar
 			  @Override
 			  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			  {
-				  Intent intent = new Intent(LuzCastilla.this, Pelicula.class);
+				  Intent intent = new Intent(LuzCastilla.this, PeliculaActivity.class);
 				  intent.putExtra("id_peli", ""+id); //ID de la pelicula seleccionada
 				  
 				  startActivity(intent);

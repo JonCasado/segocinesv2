@@ -20,21 +20,21 @@ public class BaseDeDatos
 	static final int VERSION = 1;
 	static final String DATABASE = "segocines.db";
 	static final String TABLE = "peliculas";
-	static final String C_ID = "_id";
-    static final String C_IMGPREVIA = "imgPreviaPeli";
-    static final String C_IMG = "imgPeli";
-    static final String C_NOMBRE = "nombrePeli";
-    static final String C_NOMBREORIG = "nombreOrigPeli";
-    static final String C_SINOPSIS = "sinopsisPeli";
-    static final String C_EDAD = "edadPeli";
-    static final String C_HORARIOARTESIETE = "horarioArtesietePeli";
-    static final String C_HORARIOLUZCASTILLA = "horarioLuzCastillaPeli";
-    static final String C_DIRECTOR = "directorPeli";
-    static final String C_ANYO = "anyoPeli";
-    static final String C_DURACION = "duracionPeli";
-    static final String C_PAIS = "paisPeli";
-    static final String C_GENERO = "generoPeli";
-    static final String C_TRAILER = "trailerPeli";
+	public static final String C_ID = "_id";
+	public static final String C_IMGPREVIA = "imgPreviaPeli";
+	public static final String C_IMG = "imgPeli";
+    public static final String C_NOMBRE = "nombrePeli";
+    public static final String C_NOMBREORIG = "nombreOrigPeli";
+    public static final String C_SINOPSIS = "sinopsisPeli";
+    public static final String C_EDAD = "edadPeli";
+    public static final String C_HORARIOARTESIETE = "horarioArtesietePeli";
+    public static final String C_HORARIOLUZCASTILLA = "horarioLuzCastillaPeli";
+    public static final String C_DIRECTOR = "directorPeli";
+    public static final String C_ANYO = "anyoPeli";
+    public static final String C_DURACION = "duracionPeli";
+    public static final String C_PAIS = "paisPeli";
+    public static final String C_GENERO = "generoPeli";
+    public static final String C_TRAILER = "trailerPeli";
 	
     
     ///////////////////////////////////////////////////////////////
