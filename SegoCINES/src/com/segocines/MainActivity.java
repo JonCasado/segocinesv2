@@ -7,6 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.segocines.adapter.CustomListAdapter;
+import com.segocines.adapter.DrawerAdapter;
+import com.segocines.app.ApplicationSegoCines;
+import com.segocines.model.Pelicula;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -54,6 +59,8 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
     ListView pelisList;
     Cursor pelisCursor;
 	SimpleCursorAdapter pelisAdapter;
+    CustomListAdapter pelisCustomAdapter;
+    List<Pelicula> movieList = new ArrayList<Pelicula>();
 	//private ImageDownloader imgDown;
 	
 	//Base de Datos
@@ -161,13 +168,16 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 		startManagingCursor(pelisCursor);
 		
 		pelisAdapter = new SimpleCursorAdapter(this, R.layout.formato_lista, pelisCursor, FROM, TO);
+		
+		//pelisAdapter = new CustomListAdapter(this, movieList);
+		
 		pelisList.setAdapter(pelisAdapter);
 		pelisList.setOnItemClickListener(new OnItemClickListener()
 		{
 			  @Override
 			  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			  {
-				  Intent intent = new Intent(MainActivity.this, Pelicula.class);
+				  Intent intent = new Intent(MainActivity.this, PeliculaActivity.class);
 				  intent.putExtra("id_peli", ""+id); //ID de la pelicula seleccionada
 				  
 				  startActivity(intent);

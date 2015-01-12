@@ -26,10 +26,10 @@ public class ActionBar extends ActionBarActivity
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
-	{			
+	{		
 		switch(item.getItemId())
 		{
-			//AJUSTES			
+			//AJUSTES
 			case R.id.action_Settings:
 				NavUtils.navigateUpFromSameTask(this);
 				startActivity(new Intent(this, PrefsActivity.class));

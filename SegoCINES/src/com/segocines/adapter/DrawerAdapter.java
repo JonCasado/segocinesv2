@@ -1,6 +1,10 @@
-package com.segocines;
+package com.segocines.adapter;
 
 import java.util.List;
+
+import com.segocines.DrawerItem;
+import com.segocines.R;
+import com.segocines.R.id;
 
 import android.app.Activity;
 import android.content.Context;

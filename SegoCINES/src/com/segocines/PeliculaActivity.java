@@ -12,7 +12,7 @@ import android.widget.SimpleCursorAdapter;
 /* Activity que muestra la informacion de la pelicula		 */
 /* seleccionada.											 */
 ///////////////////////////////////////////////////////////////
-public class Pelicula extends ActionBar
+public class PeliculaActivity extends ActionBar
 {	
 	ListView listPeli;
 	Cursor cursor;
