@@ -1,7 +1,9 @@
-package com.segocines;
+package com.segocines.activities;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.segocines.R;
 
 import android.app.Activity;
 import android.content.Intent;

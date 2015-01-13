@@ -1,4 +1,9 @@
-package com.segocines;
+package com.segocines.model;
+
+import com.segocines.R;
+import com.segocines.R.id;
+import com.segocines.R.menu;
+import com.segocines.activities.PrefsActivity;
 
 import android.content.Intent;
 import android.support.v4.app.NavUtils;

@@ -1,4 +1,10 @@
-package com.segocines;
+package com.segocines.activities;
+
+import com.segocines.R;
+import com.segocines.R.id;
+import com.segocines.R.layout;
+import com.segocines.bd.BaseDeDatos;
+import com.segocines.model.ActionBar;
 
 import android.database.Cursor;
 import android.os.Bundle;

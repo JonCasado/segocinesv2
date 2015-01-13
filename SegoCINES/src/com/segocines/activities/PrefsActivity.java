@@ -1,4 +1,6 @@
-package com.segocines;
+package com.segocines.activities;
+
+import com.segocines.R;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;

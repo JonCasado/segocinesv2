@@ -1,4 +1,4 @@
-package com.segocines;
+package com.segocines.bd;
 
 import android.content.ContentValues;
 import android.content.Context;

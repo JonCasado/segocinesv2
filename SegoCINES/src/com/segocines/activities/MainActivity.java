@@ -1,4 +1,4 @@
-package com.segocines;
+package com.segocines.activities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +7,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.segocines.R;
 import com.segocines.adapter.CustomListAdapter;
 import com.segocines.adapter.DrawerAdapter;
 import com.segocines.app.ApplicationSegoCines;
+import com.segocines.bd.BaseDeDatos;
+import com.segocines.model.DrawerItem;
 import com.segocines.model.Pelicula;
+import com.segocines.util.JSONParser;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -371,32 +375,6 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 	    			
 	    			appSegoCines = ((ApplicationSegoCines) getApplication());
 	    			appSegoCines.escribirDatos(idPeli, imgPreviaPeli, imgPeli, nombrePeli, nombreOrigPeli, sinopsisPeli, edadPeli, horarioArtesietePeli, horarioLuzCastillaPeli, directorPeli, anyoPeli, paisPeli, duracionPeli, generoPeli, trailerPeli);
-	    			
-	    			// Añadiendo valores al HashMap, de forma clave => valor
-	    			/*HashMap<String, String> map = new HashMap<String, String>();
-	                
-	    			map.put(TAG_NOMBRE, nombrePeli);
-	    			map.put(TAG_HORARIOARTESIETE, horarioArtesietePeli);
-	                
-	    			oslist.add(map);
-	    			
-	    			pelisList = (ListView)findViewById(R.id.list);
-	                
-	    			ListAdapter adapter = new SimpleAdapter(MainActivity.this, oslist, R.layout.formato_lista,
-	    				new String[] {TAG_NOMBRE, TAG_HORARIOARTESIETE},
-	    				new int[] {R.id.nombrePeli, R.id.horarioAPeli}
-	    			);
-	                
-	    			pelisList.setAdapter(adapter);
-	                
-	    			pelisList.setOnItemClickListener(new AdapterView.OnItemClickListener()
-	    			{
-	    				@Override
-	    				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-	    				{
-	    					Toast.makeText(MainActivity.this, "Has clickado en "+oslist.get(+position).get("nombrePeli"), Toast.LENGTH_SHORT).show();																					
-	    				}
-	    			});*/
 	                
 	    			MainActivity.this.onResume();
 	    		}
