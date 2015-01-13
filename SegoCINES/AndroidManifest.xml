@@ -41,7 +41,7 @@
         
         <!-- ARTESIETE -->
         <activity
-  			android:name="com.segocines.activities.ArteSiete"
+  			android:name="com.segocines.activities.Cine"
             android:label=""
            	android:parentActivityName="com.segocines.activities.MainActivity"
             android:screenOrientation="portrait"
