@@ -15,6 +15,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.segocines.R;
 import com.segocines.app.ApplicationSegoCines;
+import com.segocines.bd.BaseDeDatos;
 import com.segocines.model.Pelicula;
 
 
@@ -23,7 +24,8 @@ public class CustomListAdapter extends BaseAdapter
 {
     private Activity activity;
     private LayoutInflater inflater;
-    private List<Pelicula> movieItems;
+    private BaseDeDatos BD;
+    List<Pelicula> movieItems;
     ImageLoader imageLoader = ApplicationSegoCines.getInstance().getImageLoader();
  
     public CustomListAdapter(Activity activity, List<Pelicula> movieList)

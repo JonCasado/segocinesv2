@@ -1,4 +1,4 @@
-package com.segocines;
+package com.segocines.model;
 
 
 /*************************************************************/

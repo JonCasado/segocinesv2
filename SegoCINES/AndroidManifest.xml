@@ -21,7 +21,7 @@
         
         <!-- SPLASH ACTIVITY -->
         <activity
-            android:name=".SplashActivity"
+            android:name="com.segocines.activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme" >
             <intent-filter>
@@ -33,7 +33,7 @@
         
         <!-- MAIN ACTIVITY -->
         <activity
-            android:name=".MainActivity"
+            android:name="com.segocines.activities.MainActivity"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme" >
@@ -41,59 +41,62 @@
         
         <!-- ARTESIETE -->
         <activity
-            android:name=".ArteSiete"
+  			android:name="com.segocines.activities.ArteSiete"
             android:label=""
-           	android:parentActivityName=".MainActivity"
+           	android:parentActivityName="com.segocines.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme" >
             
             <!-- Support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" >
+                android:value="com.segocines.activities.MainActivity" >
             </meta-data>
         </activity>
         
         
         <!-- LUZ DE CASTILLA -->
         <activity
-            android:name=".LuzCastilla"
+            android:name="com.segocines.activities.LuzCastilla"
             android:label=""
-           	android:parentActivityName=".MainActivity"
+           	android:parentActivityName="com.segocines.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme" >
             
             <!-- Support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" >
+                android:value="com.segocines.activities.MainActivity" >
             </meta-data>
         </activity>
-        
         <!-- PELICULA -->
         <activity
-            android:name=".PeliculaActivity"
+            android:name="com.segocines.activities.PeliculaActivity"
             android:label=""
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.segocines.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme" >
             
             <!-- Support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" >
+                android:value="com.segocines.activities.MainActivity" >
             </meta-data>            
         </activity>
         
         <!-- AJUSTES -->
         <activity
-            android:name=".PrefsActivity"
+            android:name="com.segocines.activities.PrefsActivity"
 			android:label="@string/action_Settings"
-			
+			android:parentActivityName="com.segocines.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyPrefsTheme" >
             
-            
+            <!-- Support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.segocines.activities.MainActivity" >
+            </meta-data>  
 		</activity>
     </application>
 
