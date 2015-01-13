@@ -283,13 +283,15 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 			{
 				//ARTESIETE
 				case 0:
-					intent = new Intent(MainActivity.this, ArteSiete.class);
+					intent = new Intent(MainActivity.this, Cine.class);
+					intent.putExtra("horario", "horarioArtesietePeli");
 		            startActivity(intent);
 					break;
 					
 				//LUZ DE CASTILLA
 				case 1:
-					intent = new Intent(MainActivity.this, LuzCastilla.class);
+					intent = new Intent(MainActivity.this, Cine.class);
+					intent.putExtra("horario", "horarioLuzCastillaPeli");
 		            startActivity(intent);
 					break;
 					
