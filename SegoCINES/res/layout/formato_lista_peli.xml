@@ -202,26 +202,17 @@
     </TextView>
     
     <!-- TRAILER -->
-    <VideoView
-        android:id="@+id/trailer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sinopsisPeli"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginEnd="15dp" >
-    </VideoView>
     
     <ImageView
         android:id="@+id/separator"
-        android:contentDescription="@string/separator"
-        android:src="@drawable/lv_separator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/trailer"
+        android:layout_below="@+id/sinopsisPeli"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp" >
+        android:contentDescription="@string/separator"
+        android:src="@drawable/lv_separator" >
+
     </ImageView>
  
     <!-- Cine Artesiete -->
@@ -277,4 +268,19 @@
         android:layout_marginRight="15dp"
         android:layout_marginEnd="15dp" >
     </TextView>
+    
+    <!-- Boton para enlazar con los trailers de YouTube -->
+    <Button
+		android:id="@+id/btnYT"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/horarioBPeli"
+		android:layout_centerHorizontal="true"
+		android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+		android:text="@string/youtube" >
+	</Button>
+	
 </RelativeLayout>

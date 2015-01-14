@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -34,8 +35,10 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -66,6 +69,7 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
     CustomListAdapter pelisCustomAdapter;
     List<Pelicula> movieList = new ArrayList<Pelicula>();
 	//private ImageDownloader imgDown;
+    Button btnYT;
 	
 	//Base de Datos
 	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_HORARIOARTESIETE, BaseDeDatos.C_HORARIOLUZCASTILLA};
@@ -148,6 +152,7 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 			
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);	//añade el boton de volver, al ActionBar
 		//getSupportActionBar().setHomeButtonEnabled(true);
+    
     }
     //FIN-onCreate
     
@@ -184,9 +189,11 @@ public class MainActivity extends ActionBarActivity implements OnSharedPreferenc
 				  Intent intent = new Intent(MainActivity.this, PeliculaActivity.class);
 				  intent.putExtra("id_peli", ""+id); //ID de la pelicula seleccionada
 				  
+				  
 				  startActivity(intent);
 			  }
 		});
+		  
 	}
     //FIN-onResume
     
