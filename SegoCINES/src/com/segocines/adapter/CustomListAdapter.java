@@ -24,9 +24,9 @@ public class CustomListAdapter extends BaseAdapter
 {
     private Activity activity;
     private LayoutInflater inflater;
-    private BaseDeDatos BD;
+    //private BaseDeDatos BD;
     List<Pelicula> movieItems;
-    ImageLoader imageLoader = ApplicationSegoCines.getInstance().getImageLoader();
+    //ImageLoader imageLoader = ApplicationSegoCines.getInstance().getImageLoader();
  
     public CustomListAdapter(Activity activity, List<Pelicula> movieList)
     {
@@ -52,7 +52,7 @@ public class CustomListAdapter extends BaseAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     { 
-        if (inflater == null)
+        /*if (inflater == null)
         {
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
@@ -82,7 +82,7 @@ public class CustomListAdapter extends BaseAdapter
          
         // release year
         year.setText(String.valueOf(m.getAnyo()));
- 
+ 		*/
         return convertView;
     }
 }

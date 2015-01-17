@@ -3,7 +3,6 @@ package com.segocines.adapter;
 import java.util.List;
 
 import com.segocines.R;
-import com.segocines.R.id;
 import com.segocines.model.DrawerItem;
 
 import android.app.Activity;

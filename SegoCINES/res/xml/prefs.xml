@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     
-    <PreferenceCategory android:title="@string/quality_video">
-	    
+    <PreferenceCategory android:title="@string/idioma">
 	    <ListPreference
-	        android:key="videoqualityWIFI"
-	        android:title="@string/quality_videoWIFI"
+	        android:key="idioma"
+	        android:title="@string/idioma"
 	        android:summary="%s"
-	        android:entryValues="@array/videoPrefs"
-	        android:entries="@array/videoPrefs"
-	        android:defaultValue="@string/quality_video_standar"
-	        android:theme="@style/MyPrefsTheme" >
-	    </ListPreference>
-	    
-	    <ListPreference
-	        android:key="videoqualityDatosMv"
-	        android:title="@string/quality_videoDatosMv"
-	        android:summary="%s"
-	        android:entryValues="@array/videoPrefs"
-	        android:entries="@array/videoPrefs"
-	        android:defaultValue="@string/quality_video_standar"
+	        android:entryValues="@array/idiomasCodigos"
+	        android:entries="@array/idiomas"
+	        android:defaultValue="@string/es"
 	        android:theme="@style/MyPrefsTheme" >
 	    </ListPreference>
     </PreferenceCategory>

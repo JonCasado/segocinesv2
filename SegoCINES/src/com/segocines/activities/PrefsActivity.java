@@ -2,11 +2,8 @@ package com.segocines.activities;
 
 import com.segocines.R;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 
 
 /*************************************************************/
@@ -15,10 +12,8 @@ import android.preference.PreferenceManager;
 ///////////////////////////////////////////////////////////////
 /* Activity que muestra las preferencias compartidas.		 */
 ///////////////////////////////////////////////////////////////
-public class PrefsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener
-{
-	private SharedPreferences prefs;
-	
+public class PrefsActivity extends PreferenceActivity
+{	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -27,24 +22,5 @@ public class PrefsActivity extends PreferenceActivity implements OnSharedPrefere
 		addPreferencesFromResource(R.xml.prefs);
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-
-		this.setPrefs(PreferenceManager.getDefaultSharedPreferences(this));
-		this.getPrefs().registerOnSharedPreferenceChangeListener(this);
-	}
-
-	@Override
-    public void onSharedPreferenceChanged(SharedPreferences options, String key)
-    {
-		
-    }
-    
-    public SharedPreferences getPrefs()
-	{
-		return prefs;
-	}
-
-	public void setPrefs(SharedPreferences prefs)
-	{
-		this.prefs = prefs;
 	}
 }
