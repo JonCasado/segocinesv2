@@ -1,15 +1,17 @@
 package com.segocines.app;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
+import java.util.Locale;
+
 import com.segocines.bd.BaseDeDatos;
-import com.segocines.util.LruBitmapCache;
 
 import android.app.Application;
 import android.content.ContentValues;
-import android.text.TextUtils;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 
@@ -19,15 +21,13 @@ import android.util.Log;
 ///////////////////////////////////////////////////////////////
 /* Activity que muestra la cartelera de los cines Artesiete. */
 ///////////////////////////////////////////////////////////////
-public class ApplicationSegoCines extends Application
+public class ApplicationSegoCines extends Application implements OnSharedPreferenceChangeListener
 {
 	private static final String TAG = ApplicationSegoCines.class.getSimpleName();
 	
 	public BaseDeDatos segocinesData;	//Base de Datos
-	private RequestQueue mRequestQueue;
-    private ImageLoader mImageLoader;
-    
-    public static ApplicationSegoCines appInstance;
+    private SharedPreferences prefs;
+    private static ApplicationSegoCines appInstance;
     
     public static synchronized ApplicationSegoCines getInstance()
     {
@@ -43,6 +43,17 @@ public class ApplicationSegoCines extends Application
 		segocinesData = new BaseDeDatos(this);
 	
 		return segocinesData;
+	}
+	
+	
+	@Override
+
+	public void onCreate()
+	{
+		super.onCreate();		
+
+		this.setPrefs(PreferenceManager.getDefaultSharedPreferences(this));
+		this.getPrefs().registerOnSharedPreferenceChangeListener(this);
 	}
 	
 	
@@ -85,44 +96,33 @@ public class ApplicationSegoCines extends Application
 	//FIN-escribirDatos
 	
 	
-	public RequestQueue getRequestQueue()
+	//Cambia el idioma de la aplicacion
+	public void updateLanguage(String idioma)
 	{
-        if (mRequestQueue == null)
-        {
-            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        }
- 
-        return mRequestQueue;
+		Locale myLocale = new Locale(idioma);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+
+        onConfigurationChanged(conf);
     }
- 
-    public ImageLoader getImageLoader()
-    {
-        getRequestQueue();
-        if (mImageLoader == null)
-        {
-            mImageLoader = new ImageLoader(this.mRequestQueue, new LruBitmapCache());
-        }
-        return this.mImageLoader;
-    }
- 
-    public <T> void addToRequestQueue(Request<T> req, String tag)
-    {
-        // set the default tag if tag is empty
-        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
-        getRequestQueue().add(req);
-    }
- 
-    public <T> void addToRequestQueue(Request<T> req)
-    {
-        req.setTag(TAG);
-        getRequestQueue().add(req);
-    }
- 
-    public void cancelPendingRequests(Object tag)
-    {
-        if (mRequestQueue != null)
-        {
-            mRequestQueue.cancelAll(tag);
-        }
-    }
+
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+	{
+		updateLanguage(sharedPreferences.getString("idioma", ""));
+	}
+
+	public SharedPreferences getPrefs()
+	{
+		return prefs;
+	}
+
+	public void setPrefs(SharedPreferences prefs)
+	{
+		this.prefs = prefs;
+	}
 }

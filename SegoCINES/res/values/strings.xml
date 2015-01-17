@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- GENERAL -->
     <string name="app_name">SegoCINES</string>
-    <string name="cine1">Artesiete</string>
-    <string name="cine2">Luz de Castilla</string>
     <string name="youtube">Ver Trailer</string>
+    
+    <!-- IDIOMAS -->
+	<string name="idioma">Idioma</string>
+		<string name="es">Español</string>
+		<string name="en">English</string>
     
     <string name="pelicula1">Título</string>
     <string name="title_datos_pelicula">Información</string>
@@ -38,12 +42,10 @@
     <string name="item_icon">Item icono</string>
     <string name="drawer_open">Abrir navegación</string>
 	<string name="drawer_close">Cerrar navegación</string>
-    <string name="quality_video">Calidad de vídeo</string>
-    	<string name="quality_videoWIFI">Calidad de vídeo WIFI</string>
-    	<string name="quality_videoDatosMv">Calidad de vídeo datos móvil</string>
-    	<string name="quality_video_none">Ninguno seleccionado</string>
-    		<string name="quality_video_HD">720p</string>
-    		<string name="quality_video_media">480p</string>
-    		<string name="quality_video_standar">Resolución estándar</string>
-
+	<string name="nav_settings">Ajustes</string>
+	<string name="nav_help">Ayuda</string>
+	
+    <!-- JSON -->
+    <string name="dlg_datos">Recogiendo datos..</string>
+    
 </resources>

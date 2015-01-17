@@ -11,7 +11,7 @@
         android:layout_height="50.0dip"
         android:layout_alignParentTop="true"
         android:background="@drawable/sgc_bckg_artesiete"
-        android:contentDescription="@string/cine1"
+        android:contentDescription="@string/cineArtesiete"
         android:gravity="start" >
     </TabWidget>
     
@@ -23,7 +23,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/cine1"
+        android:contentDescription="@string/cineArtesiete"
         android:maxHeight="40.0dip"
         android:maxWidth="156.0dip"
         android:src="@drawable/sgc_title_artesiete" >

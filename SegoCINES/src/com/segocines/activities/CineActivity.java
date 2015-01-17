@@ -20,7 +20,7 @@ import android.widget.AdapterView.OnItemClickListener;
 ///////////////////////////////////////////////////////////////
 /* Activity que muestra la cartelera del cine seleccionado.  */
 ///////////////////////////////////////////////////////////////
-public class Cine extends ActionBar
+public class CineActivity extends ActionBar
 {	
 	ListView listCine;
 	Cursor cursor;
@@ -92,7 +92,7 @@ public class Cine extends ActionBar
 			  @Override
 			  public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			  {
-				  Intent intent = new Intent(Cine.this, PeliculaActivity.class);
+				  Intent intent = new Intent(CineActivity.this, PeliculaActivity.class);
 				  intent.putExtra("id_peli", ""+id); //ID de la pelicula seleccionada
 				  
 				  startActivity(intent);

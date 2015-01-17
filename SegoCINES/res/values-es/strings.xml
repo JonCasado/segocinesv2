@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- GENERAL -->
+    <string name="app_name">SegoCINES</string>
+    <string name="youtube">Ver Trailer</string>
+    
+    <!-- IDIOMAS -->
+	<string name="idioma">Idioma</string>
+		<string name="es">Español</string>
+		<string name="en">English</string>
+    
+    <string name="pelicula1">Título</string>
+    <string name="title_datos_pelicula">Información</string>
+    <string name="action_Upgrade">Actualizar</string>
+    <string name="action_Settings">Ajustes</string>
+    
+    <!-- CINES -->
+    <string name="cineArtesiete">Artesiete</string>
+    <string name="cineLuzCastilla">Luz de Castilla</string>
+    <string name="divider"> | </string>
+    <string name="separator">separador</string>
+    
+    <!-- PELICULA -->
+    <string name="imgPeli">imagen</string>
+    <string name="imgPreviaPeli">imagen</string>
+    <string name="horarioPeli">Horario: </string>
+    <string name="sinopsisPeli">Sinopsis</string>
+    <string name="tituloPeli">Título: </string>
+    <string name="tituloOrigPeli">Título Original: </string>
+    <string name="directorPeli">Director: </string>
+    <string name="duracionPeli">Duración: </string>
+    <string name="paisPeli">País: </string>
+    <string name="anyoPeli">Año: </string>
+    <string name="generoPeli">Género: </string>
+    <string name="edadPeli">Calificación: </string>
+    <string name="anyos"> años.</string>
+    <string name="minutos"> min</string>
+    <string name="trailerPeli">Trailer</string>
+    
+    <!-- NAVIGATION DRAWER -->
+    <string name="item_icon">Item icono</string>
+    <string name="drawer_open">Abrir navegación</string>
+	<string name="drawer_close">Cerrar navegación</string>
+	<string name="nav_settings">Ajustes</string>
+	<string name="nav_help">Ayuda</string>
+	
+    <!-- JSON -->
+    <string name="dlg_datos">Recogiendo datos..</string>
+    
+</resources>

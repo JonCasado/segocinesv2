@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.segocines"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0"
+    android:configChanges="locale" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -39,9 +40,9 @@
             android:theme="@style/CustomActionBarTheme" >
         </activity>
         
-        <!-- ARTESIETE -->
+        <!-- CINE -->
         <activity
-  			android:name="com.segocines.activities.Cine"
+  			android:name="com.segocines.activities.CineActivity"
             android:label=""
            	android:parentActivityName="com.segocines.activities.MainActivity"
             android:screenOrientation="portrait"
@@ -54,21 +55,6 @@
             </meta-data>
         </activity>
         
-        
-        <!-- LUZ DE CASTILLA -->
-        <activity
-            android:name="com.segocines.activities.LuzCastilla"
-            android:label=""
-           	android:parentActivityName="com.segocines.activities.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme" >
-            
-            <!-- Support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.segocines.activities.MainActivity" >
-            </meta-data>
-        </activity>
         <!-- PELICULA -->
         <activity
             android:name="com.segocines.activities.PeliculaActivity"
