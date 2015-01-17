@@ -95,6 +95,13 @@ public class MainActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        //Recoge las peliculas si se inicia por primera vez la aplicacion
+        pelisList = (ListView) findViewById(R.id.list);
+        if(pelisList.getCount() == 0)
+        {
+        	new JSONParse().execute();
+        }
       	
         //Panel DrawerNavigation
         this.dataList = new ArrayList<DrawerItem>();
@@ -237,6 +244,7 @@ public class MainActivity extends ActionBarActivity
 				
 			//ACTUALIZAR
 			case R.id.action_Upgrade:
+				appSegoCines.eliminarDatos();
 				new JSONParse().execute();
 				return true;
 				

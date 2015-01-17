@@ -47,13 +47,18 @@ public class ApplicationSegoCines extends Application implements OnSharedPrefere
 	
 	
 	@Override
-
 	public void onCreate()
 	{
 		super.onCreate();		
 
 		this.setPrefs(PreferenceManager.getDefaultSharedPreferences(this));
 		this.getPrefs().registerOnSharedPreferenceChangeListener(this);
+	}
+	
+	
+	public synchronized void eliminarDatos()
+	{
+		this.getStatusData().delete();
 	}
 	
 	
