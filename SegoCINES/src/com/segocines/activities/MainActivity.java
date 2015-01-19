@@ -239,7 +239,9 @@ public class MainActivity extends ActionBarActivity
 		{
 			//AJUSTES
 			case R.id.action_Settings:
-				startActivity(new Intent(this, PrefsActivity.class));
+				Intent intent = new Intent(this, PrefsActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
 				return true;
 				
 			//ACTUALIZAR
