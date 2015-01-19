@@ -75,6 +75,7 @@
             android:name="com.segocines.activities.PrefsActivity"
 			android:label="@string/action_Settings"
 			android:parentActivityName="com.segocines.activities.MainActivity"
+			android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/MyPrefsTheme" >
             

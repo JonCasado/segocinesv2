@@ -27,15 +27,29 @@ public class ActionBar extends ActionBarActivity
 		return super.onCreateOptionsMenu(menu);
 	}
 	
+	
+	@Override
+	public void onBackPressed()
+	{
+		NavUtils.navigateUpFromSameTask(this);
+	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{		
 		switch(item.getItemId())
 		{
+			//BACK
+			case R.id.home:
+				onBackPressed();
+				return true;
+		
 			//AJUSTES
 			case R.id.action_Settings:
 				NavUtils.navigateUpFromSameTask(this);
-				startActivity(new Intent(this, PrefsActivity.class));
+				Intent intent = new Intent(this, PrefsActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
 				return true;
 				
 			default:

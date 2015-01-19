@@ -4,6 +4,7 @@ import com.segocines.R;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.support.v4.app.NavUtils;
 
 
 /*************************************************************/
@@ -22,5 +23,11 @@ public class PrefsActivity extends PreferenceActivity
 		addPreferencesFromResource(R.xml.prefs);
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+	
+	@Override
+	public void onBackPressed()
+	{
+		NavUtils.navigateUpFromSameTask(this);
 	}
 }
