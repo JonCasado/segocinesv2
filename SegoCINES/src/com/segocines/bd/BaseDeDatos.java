@@ -176,4 +176,29 @@ public class BaseDeDatos
 		return db.query(TABLE, null, C_ID+" == '"+id_peli+"'", null, null, null, null);
 	}
 	//FIN-leerDatos
+	
+	
+	public boolean checkDataBase()
+	{
+		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+		
+		Cursor cur = db.rawQuery("SELECT COUNT(*) FROM "+TABLE, null);
+	    if (cur != null)
+	    {
+	        cur.moveToFirst();
+	        
+	        if(cur.getInt(0) == 0) //BD vacia
+	        {
+	        	return true; 
+	        }
+	        else
+	        {
+	        	return false;
+	        }
+	    }
+	    else
+	    {
+	    	return true;
+	    }
+	}
 }

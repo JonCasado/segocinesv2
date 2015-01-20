@@ -95,12 +95,23 @@ public class MainActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        //Recoge las peliculas si se inicia por primera vez la aplicacion
-        pelisList = (ListView) findViewById(R.id.list);
-        if(pelisList.getCount() == 0)
+              
+        appSegoCines = ((ApplicationSegoCines) getApplication());
+        try
         {
-        	new JSONParse().execute();
+		    if (appSegoCines.checkDB())
+		    {
+		    	//Recoge las peliculas si se inicia por primera vez la aplicacion  
+		    	new JSONParse().execute();
+		    }
+		    else
+		    {
+		    	//ya hay datos
+		    }
+        }
+        catch(RuntimeException e)
+        {
+        	
         }
       	
         //Panel DrawerNavigation

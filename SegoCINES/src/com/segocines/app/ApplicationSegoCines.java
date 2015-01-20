@@ -91,7 +91,7 @@ public class ApplicationSegoCines extends Application implements OnSharedPrefere
 			this.getStatusData().insertOrIgnore(values);
 			
 		} 
-		catch (RuntimeException e)
+		catch(RuntimeException e)
 		{
 			Log.e(TAG, "Failed to fetch status updates", e);
 		}
@@ -99,6 +99,11 @@ public class ApplicationSegoCines extends Application implements OnSharedPrefere
 		segocinesData.close();		
 	}
 	//FIN-escribirDatos
+	
+	public boolean checkDB()
+	{
+		return this.getStatusData().checkDataBase();
+	}
 	
 	
 	//Cambia el idioma de la aplicacion
