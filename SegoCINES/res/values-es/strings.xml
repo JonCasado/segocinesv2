@@ -5,6 +5,9 @@
     <string name="app_name">SegoCINES</string>
     <string name="youtube">Ver Trailer</string>
     
+    <!-- CONEXION INTERNET -->
+    <string name="conex_Error">Comprueba tu conexión a Internet.</string>
+    
     <!-- IDIOMAS -->
 	<string name="idioma">Idioma</string>
 		<string name="es">Español</string>
