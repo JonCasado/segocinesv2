@@ -16,9 +16,12 @@ import com.segocines.util.JSONParser;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -34,6 +37,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 
 /*************************************************************/
@@ -97,22 +101,25 @@ public class MainActivity extends ActionBarActivity
         setContentView(R.layout.activity_main);
               
         appSegoCines = ((ApplicationSegoCines) getApplication());
-        try
-        {
-		    if (appSegoCines.checkDB())
-		    {
-		    	//Recoge las peliculas si se inicia por primera vez la aplicacion  
-		    	new JSONParse().execute();
-		    }
-		    else
-		    {
-		    	//ya hay datos
-		    }
-        }
-        catch(RuntimeException e)
-        {
-        	
-        }
+	    if (appSegoCines.checkDB())
+	    {
+	    	//recoge las peliculas si se inicia por primera vez la aplicacion 
+	    	if(verificaConexion(this))
+	    	{
+	    		new JSONParse().execute();
+	    	}
+	    	else
+	    	{
+	    		if(!verificaConexion(this))
+	    		{
+	    		    Toast.makeText(getBaseContext(), getResources().getString(R.string.conex_Error), Toast.LENGTH_SHORT).show();
+	    		}
+	    	}
+	    }
+	    else
+	    {
+	    	//ya hay datos
+	    }
       	
         //Panel DrawerNavigation
         this.dataList = new ArrayList<DrawerItem>();
@@ -150,6 +157,24 @@ public class MainActivity extends ActionBarActivity
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);	//añade el boton de volver, al ActionBar
     }
     //FIN-onCreate
+    
+    
+    public static boolean verificaConexion(Context ctx)
+    {
+        boolean bConectado = false;
+        ConnectivityManager connec = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+        
+        NetworkInfo[] redes = connec.getAllNetworkInfo();
+        
+        for(int i = 0; i < 2; i++)
+        {
+            if (redes[i].getState() == NetworkInfo.State.CONNECTED)
+            {
+                bConectado = true; //hay conexion
+            }
+        }
+        return bConectado;
+    }
     
     
 	///////////////////////////////////////////////////////////////
@@ -258,7 +283,17 @@ public class MainActivity extends ActionBarActivity
 			//ACTUALIZAR
 			case R.id.action_Upgrade:
 				appSegoCines.eliminarDatos();
-				new JSONParse().execute();
+				if(verificaConexion(this))
+		    	{
+		    		new JSONParse().execute();
+		    	}
+		    	else
+		    	{
+		    		if(!verificaConexion(this))
+		    		{
+		    		    Toast.makeText(getBaseContext(), getResources().getString(R.string.conex_Error), Toast.LENGTH_SHORT).show();
+		    		}
+		    	}
 				return true;
 				
 			default:
