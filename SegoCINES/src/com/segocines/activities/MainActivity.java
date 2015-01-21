@@ -1,8 +1,13 @@
 package com.segocines.activities;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.util.ByteArrayBuffer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,8 +20,10 @@ import com.segocines.model.DrawerItem;
 import com.segocines.util.JSONParser;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -67,8 +74,8 @@ public class MainActivity extends ActionBarActivity
 	
 	//Base de Datos
     private static BaseDeDatos BD;
-	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_HORARIOARTESIETE, BaseDeDatos.C_HORARIOLUZCASTILLA};
-	static final int[] TO = {R.id.nombrePeli, R.id.horarioAPeli, R.id.horarioBPeli};
+	static final String[] FROM = {BaseDeDatos.C_IMG, BaseDeDatos.C_NOMBRE, BaseDeDatos.C_HORARIOARTESIETE, BaseDeDatos.C_HORARIOLUZCASTILLA};
+	static final int[] TO = {R.id.imgPeli, R.id.nombrePeli, R.id.horarioAPeli, R.id.horarioBPeli};
 	
     //URL de donde recogemos la informacion de las peliculas en formato JSON
     private static String url = "http://www.camaradesegovia.es/AutomaticApiRest/getData.php?t=pelicula&c=id_peli,imgPreviaPeli,imgPeli,nombrePeli,nombreOrigPeli,sinopsisPeli,edadPeli,horarioArtesietePeli,horarioLuzCastillaPeli,directorPeli,anyoPeli,paisPeli,duracionPeli,generoPeli,trailerPeli";
@@ -159,6 +166,9 @@ public class MainActivity extends ActionBarActivity
     //FIN-onCreate
     
     
+	///////////////////////////////////////////////////////////////
+	/* Verifica si se tiene conexion a Internet.				 */
+	///////////////////////////////////////////////////////////////
     public static boolean verificaConexion(Context ctx)
     {
         boolean bConectado = false;
@@ -175,6 +185,7 @@ public class MainActivity extends ActionBarActivity
         }
         return bConectado;
     }
+    //FIN-verificarConexion
     
     
 	///////////////////////////////////////////////////////////////
@@ -193,6 +204,9 @@ public class MainActivity extends ActionBarActivity
     //FIN-onResume
     
     
+	///////////////////////////////////////////////////////////////
+	/* Recoge las peliculas de la BD.							 */
+	///////////////////////////////////////////////////////////////
     @SuppressWarnings("deprecation")
 	public void mostrarPelis()
     {
@@ -337,7 +351,7 @@ public class MainActivity extends ActionBarActivity
 					
 				//AYUDA
 				case 3:
-					//mensaje de F.A.Q.
+					help();
 					break;
 					
 				default:
@@ -345,6 +359,28 @@ public class MainActivity extends ActionBarActivity
 					break;
 			}
 		}
+	}
+	
+	
+	///////////////////////////////////////////////////////////////
+	/* Muestra una pequena ayuda de utilizacion.				 */
+	///////////////////////////////////////////////////////////////
+	public void help()
+	{
+        AlertDialog.Builder faq = new AlertDialog.Builder(this);
+        
+        faq.setTitle(getResources().getString(R.string.faq_title));
+        faq.setMessage(getResources().getString(R.string.faq_text));
+         
+        faq.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface arg0, int arg1)
+            {
+            	
+            }
+        });
+        
+        faq.show();
 	}
 	
 	
@@ -391,7 +427,8 @@ public class MainActivity extends ActionBarActivity
 	    			// Guardando el  JSON en una Variable
 	    			int idPeli = c.getInt(TAG_ID);
 	    			String imgPreviaPeli = c.getString(TAG_IMGPREVIA);
-	    			String imgPeli = c.getString(TAG_IMG);
+	    			//String imgPeli = c.getString(TAG_IMG);
+	    			byte[] imgPeli = getImageFromUrl(TAG_IMG);
 	    			String nombrePeli = c.getString(TAG_NOMBRE);
 	    			String nombreOrigPeli = c.getString(TAG_NOMBREORIG);
 	    			String sinopsisPeli = c.getString(TAG_SINOPSIS);
@@ -421,4 +458,26 @@ public class MainActivity extends ActionBarActivity
 	    //FIN-onPostExecute
 	}
 	//FIN-JSONParse
+	
+	
+	//Intentando descargar imagenes y guardarlas en SQLite
+	private byte[] getImageFromUrl(String url){
+	     try {
+	             URL imageUrl = new URL(url);
+	             URLConnection ucon = imageUrl.openConnection();
+
+	             InputStream is = ucon.getInputStream();
+	             BufferedInputStream bis = new BufferedInputStream(is);
+
+	             ByteArrayBuffer baf = new ByteArrayBuffer(500);
+	             int current = 0;
+	             while ((current = bis.read()) != -1) {
+	                     baf.append((byte) current);
+	             }
+
+	             return baf.toByteArray();
+	     } catch (Exception e) {
+	     }
+	     return null;
+	}
 }

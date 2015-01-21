@@ -56,6 +56,9 @@ public class ApplicationSegoCines extends Application implements OnSharedPrefere
 	}
 	
 	
+	///////////////////////////////////////////////////////////////
+	/* Elimina los datos almacenados en la Base de Datos.		 */
+	///////////////////////////////////////////////////////////////
 	public synchronized void eliminarDatos()
 	{
 		this.getStatusData().delete();
@@ -65,7 +68,7 @@ public class ApplicationSegoCines extends Application implements OnSharedPrefere
 	///////////////////////////////////////////////////////////////
 	/* Inserta en la BD los datos de las peliculas.				 */
 	///////////////////////////////////////////////////////////////
-	public synchronized void escribirDatos(int idPeli, String imgPreviaPeli, String imgPeli, String nombrePeli, String nombreOrigPeli, String sinopsisPeli, String edadPeli, String horarioArtesietePeli, String horarioLuzCastillaPeli, String directorPeli, int anyoPeli, String paisPeli, int duracionPeli, String generoPeli, String trailerPeli)
+	public synchronized void escribirDatos(int idPeli, String imgPreviaPeli, byte[] imgPeli, String nombrePeli, String nombreOrigPeli, String sinopsisPeli, String edadPeli, String horarioArtesietePeli, String horarioLuzCastillaPeli, String directorPeli, int anyoPeli, String paisPeli, int duracionPeli, String generoPeli, String trailerPeli)
 	{		
 		try
 		{
@@ -100,13 +103,19 @@ public class ApplicationSegoCines extends Application implements OnSharedPrefere
 	}
 	//FIN-escribirDatos
 	
+	
+	///////////////////////////////////////////////////////////////
+	/* Comprueba si la Base de Datos esta o no vacia.			 */
+	///////////////////////////////////////////////////////////////
 	public boolean checkDB()
 	{
 		return this.getStatusData().checkDataBase();
 	}
 	
 	
-	//Cambia el idioma de la aplicacion
+	///////////////////////////////////////////////////////////////
+	/* Cambia el idioma de la aplicacion.						 */
+	///////////////////////////////////////////////////////////////
 	public void updateLanguage(String idioma)
 	{
 		Locale myLocale = new Locale(idioma);

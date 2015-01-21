@@ -47,6 +47,8 @@
 	<string name="drawer_close">Cerrar navegación</string>
 	<string name="nav_settings">Ajustes</string>
 	<string name="nav_help">Ayuda</string>
+		<string name="faq_title">FAQ</string>
+		<string name="faq_text">En caso de no visualizar ninguna película, pulsar el botón de actualizar del menú superior.</string>
 	
     <!-- JSON -->
     <string name="dlg_datos">Recogiendo datos..</string>

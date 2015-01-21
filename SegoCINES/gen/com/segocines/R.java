@@ -1084,18 +1084,20 @@ containing a value of this type.
         public static final int ic_action_video=0x7f020060;
         public static final int ic_drawer=0x7f020061;
         public static final int ic_launcher=0x7f020062;
-        public static final int imgpeli_corazonesdeacero=0x7f020063;
-        public static final int imgpreviapeli_corazonesdeacero=0x7f020064;
-        public static final int lv_separator=0x7f020065;
-        public static final int sgc_bckg_artesiete=0x7f020066;
-        public static final int sgc_bckg_luzcastilla=0x7f020067;
-        public static final int sgc_btnartesiete=0x7f020068;
-        public static final int sgc_btnluzcastilla=0x7f020069;
-        public static final int sgc_title=0x7f02006a;
-        public static final int sgc_title_artesiete=0x7f02006b;
-        public static final int sgc_title_luzcastilla=0x7f02006c;
-        public static final int splash=0x7f02006d;
-        public static final int splash_logo=0x7f02006e;
+        public static final int imgpeli_birdman=0x7f020063;
+        public static final int imgpeli_comoacabarsintujefe=0x7f020064;
+        public static final int imgpeli_corazonesdeacero=0x7f020065;
+        public static final int imgpreviapeli_corazonesdeacero=0x7f020066;
+        public static final int lv_separator=0x7f020067;
+        public static final int sgc_bckg_artesiete=0x7f020068;
+        public static final int sgc_bckg_luzcastilla=0x7f020069;
+        public static final int sgc_btnartesiete=0x7f02006a;
+        public static final int sgc_btnluzcastilla=0x7f02006b;
+        public static final int sgc_title=0x7f02006c;
+        public static final int sgc_title_artesiete=0x7f02006d;
+        public static final int sgc_title_luzcastilla=0x7f02006e;
+        public static final int splash=0x7f02006f;
+        public static final int splash_logo=0x7f020070;
     }
     public static final class id {
         public static final int action_Settings=0x7f0a006a;
@@ -1341,13 +1343,15 @@ containing a value of this type.
  JSON 
  JSON 
          */
-        public static final int dlg_datos=0x7f0b002f;
+        public static final int dlg_datos=0x7f0b0031;
         public static final int drawer_close=0x7f0b002c;
         public static final int drawer_open=0x7f0b002b;
         public static final int duracionPeli=0x7f0b0022;
         public static final int edadPeli=0x7f0b0026;
         public static final int en=0x7f0b0012;
         public static final int es=0x7f0b0011;
+        public static final int faq_text=0x7f0b0030;
+        public static final int faq_title=0x7f0b002f;
         public static final int generoPeli=0x7f0b0025;
         public static final int horarioPeli=0x7f0b001d;
         /**  IDIOMAS 

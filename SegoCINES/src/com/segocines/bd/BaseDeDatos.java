@@ -1,5 +1,6 @@
 package com.segocines.bd;
 
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -56,7 +57,7 @@ public class BaseDeDatos
 			
 			//Crea la BD
 			db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
-				C_IMGPREVIA+" text, "+C_IMG+" text, "+
+				C_IMGPREVIA+" text, "+C_IMG+" blob, "+
 				C_NOMBRE+" text, "+C_NOMBREORIG+" text, "
 				+C_SINOPSIS+" text, "+C_EDAD+" text, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
 				C_DIRECTOR+" text, "+C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");
@@ -95,7 +96,7 @@ public class BaseDeDatos
 		
 		//Crea la BD
 		db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
-			C_IMGPREVIA+" text, "+C_IMG+" text, "+
+			C_IMGPREVIA+" text, "+C_IMG+" blob, "+
 			C_NOMBRE+" text, "+C_NOMBREORIG+" text, "
 			+C_SINOPSIS+" text, "+C_EDAD+" text, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
 			C_DIRECTOR+" text, "+C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");
@@ -111,15 +112,6 @@ public class BaseDeDatos
 		
 		SQLiteDatabase db = this.dbHelper.getWritableDatabase();
 		
-		//ACTUALIZAR LA BASE DE DATOS
-		/*db.execSQL("drop table if exists " + TABLE);
-		
-		db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
-				C_IMGPREVIA+" text, "+C_IMG+" text, "+
-				C_NOMBRE+" text, "   +C_NOMBREORIG+" text, "+
-				C_SINOPSIS+" text, " +C_EDAD+" text, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
-				C_DIRECTOR+" text, " +C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");
-		*/
 		try
 		{
 			db.insertWithOnConflict(TABLE, null, values, SQLiteDatabase.CONFLICT_IGNORE);
@@ -129,6 +121,7 @@ public class BaseDeDatos
 			db.close();
 		}
 	}
+	//FIN-insertOrIgnore
 	
 	
 	///////////////////////////////////////////////////////////////
@@ -178,6 +171,9 @@ public class BaseDeDatos
 	//FIN-leerDatos
 	
 	
+	///////////////////////////////////////////////////////////////
+	/* Comprueba si la Base de Datos esta vacia.				 */
+	///////////////////////////////////////////////////////////////
 	public boolean checkDataBase()
 	{
 		SQLiteDatabase db = this.dbHelper.getReadableDatabase();
@@ -201,4 +197,5 @@ public class BaseDeDatos
 	    	return true;
 	    }
 	}
+	//FIN-checkDataBase
 }
