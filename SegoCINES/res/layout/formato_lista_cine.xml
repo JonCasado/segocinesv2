@@ -117,7 +117,7 @@
         android:layout_marginRight="2dp" >
     </TextView>
  
-    <!-- Horario Artesiete -->
+    <!-- Horario -->
     <TextView
         android:id="@+id/horarioPeli"
         android:layout_width="fill_parent"

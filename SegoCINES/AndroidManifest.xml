@@ -3,7 +3,7 @@
     package="com.segocines"
     android:versionCode="1"
     android:versionName="1.0"
-    android:configChanges="locale" >
+    android:configChanges="locale|layoutDirection" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -47,7 +47,7 @@
         <activity
   			android:name="com.segocines.activities.CineActivity"
             android:label=""
-           	android:parentActivityName="com.segocines.activities.MainActivity"
+            android:parentActivityName="com.segocines.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme" >
             
@@ -55,7 +55,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.segocines.activities.MainActivity" >
-            </meta-data>
+            </meta-data> 
         </activity>
         
         <!-- PELICULA -->

@@ -123,10 +123,6 @@ public class MainActivity extends ActionBarActivity
 	    		}
 	    	}
 	    }
-	    else
-	    {
-	    	//ya hay datos
-	    }
       	
         //Panel DrawerNavigation
         this.dataList = new ArrayList<DrawerItem>();
@@ -256,7 +252,7 @@ public class MainActivity extends ActionBarActivity
     	}
     	else
     	{
-    		super.onBackPressed();
+    		finish();
     	}
     }
 	
@@ -287,6 +283,10 @@ public class MainActivity extends ActionBarActivity
 		
 		switch(item.getItemId())
 		{
+			//BACK
+			case R.id.home:
+				finish();
+				return true;
 			//AJUSTES
 			case R.id.action_Settings:
 				Intent intent = new Intent(this, PrefsActivity.class);
@@ -332,6 +332,7 @@ public class MainActivity extends ActionBarActivity
 				//ARTESIETE
 				case 0:
 					intent = new Intent(MainActivity.this, CineActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					intent.putExtra("horario", "horarioArtesietePeli");
 		            startActivity(intent);
 					break;
@@ -339,6 +340,7 @@ public class MainActivity extends ActionBarActivity
 				//LUZ DE CASTILLA
 				case 1:
 					intent = new Intent(MainActivity.this, CineActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					intent.putExtra("horario", "horarioLuzCastillaPeli");
 		            startActivity(intent);
 					break;
@@ -346,6 +348,7 @@ public class MainActivity extends ActionBarActivity
 				//AJUSTES
 				case 2:
 					intent = new Intent(MainActivity.this, PrefsActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		            startActivity(intent);
 					break;
 					

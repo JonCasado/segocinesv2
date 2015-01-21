@@ -22,10 +22,10 @@ import android.widget.AdapterView.OnItemClickListener;
 ///////////////////////////////////////////////////////////////
 public class CineActivity extends ActionBar
 {	
-	ListView listCine;
+	ListView listCine;				//lista de cines
 	Cursor cursor;
 	SimpleCursorAdapter adapter;
-	String horario = "";	
+	String horario = "";			//muestra Artesiete o Cinebox dependiendo del horario
 	
 	private static BaseDeDatos BD;
 	
@@ -61,6 +61,12 @@ public class CineActivity extends ActionBar
 		BD.close();
 	}
 	
+	@Override
+	public void onBackPressed()
+	{
+		finish();
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onResume()
@@ -78,13 +84,13 @@ public class CineActivity extends ActionBar
         {
 			cursor = BD.leerDatosArtesiete();		//lee los datos de la BD
 			startManagingCursor(cursor);
-			adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_artesiete, cursor, FROM, TO);
+			adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_cine, cursor, FROM, TO);
         }
 		else
 		{
 			cursor = BD.leerDatosLuzCastilla();		//lee los datos de la BD
 			startManagingCursor(cursor);
-			adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_luzcastilla, cursor, FROM, TO);
+			adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_cine, cursor, FROM, TO);
 		}
 		listCine.setAdapter(adapter);
 		listCine.setOnItemClickListener(new OnItemClickListener()

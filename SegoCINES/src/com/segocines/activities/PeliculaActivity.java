@@ -50,6 +50,12 @@ public class PeliculaActivity extends ActionBar
 		BD.close();
 	}
 	
+	@Override
+	public void onBackPressed()
+	{
+		finish();
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onResume()

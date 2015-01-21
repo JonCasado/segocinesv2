@@ -12,9 +12,9 @@
 	<string name="idioma">Idioma</string>
 		<string name="es">Español</string>
 		<string name="en">English</string>
-    
-    <string name="pelicula1">Título</string>
-    <string name="title_datos_pelicula">Información</string>
+	<string name="language">Language</string>
+	
+	<!-- MENU -->
     <string name="action_Upgrade">Actualizar</string>
     <string name="action_Settings">Ajustes</string>
     
