@@ -4,7 +4,6 @@ import com.segocines.R;
 import com.segocines.activities.PrefsActivity;
 
 import android.content.Intent;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +30,7 @@ public class ActionBar extends ActionBarActivity
 	@Override
 	public void onBackPressed()
 	{
-		NavUtils.navigateUpFromSameTask(this);
+		finish();
 	}
 	
 	@Override
@@ -39,16 +38,10 @@ public class ActionBar extends ActionBarActivity
 	{		
 		switch(item.getItemId())
 		{
-			//BACK
-			case R.id.home:
-				onBackPressed();
-				return true;
-		
 			//AJUSTES
 			case R.id.action_Settings:
-				NavUtils.navigateUpFromSameTask(this);
 				Intent intent = new Intent(this, PrefsActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				return true;
 				

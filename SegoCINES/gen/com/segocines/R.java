@@ -1265,12 +1265,11 @@ containing a value of this type.
         public static final int activity_peli=0x7f03001b;
         public static final int custom_drawer_item=0x7f03001c;
         public static final int formato_lista=0x7f03001d;
-        public static final int formato_lista_artesiete=0x7f03001e;
-        public static final int formato_lista_luzcastilla=0x7f03001f;
-        public static final int formato_lista_peli=0x7f030020;
-        public static final int fragment_layout=0x7f030021;
-        public static final int splash=0x7f030022;
-        public static final int support_simple_spinner_dropdown_item=0x7f030023;
+        public static final int formato_lista_cine=0x7f03001e;
+        public static final int formato_lista_peli=0x7f03001f;
+        public static final int fragment_layout=0x7f030020;
+        public static final int splash=0x7f030021;
+        public static final int support_simple_spinner_dropdown_item=0x7f030022;
     }
     public static final class menu {
         public static final int menu=0x7f0e0000;
@@ -1317,10 +1316,14 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0b000b;
-        public static final int action_Settings=0x7f0b0016;
-        public static final int action_Upgrade=0x7f0b0015;
-        public static final int anyoPeli=0x7f0b0024;
-        public static final int anyos=0x7f0b0027;
+        public static final int action_Settings=0x7f0b0015;
+        /**  MENU 
+ MENU 
+ MENU 
+         */
+        public static final int action_Upgrade=0x7f0b0014;
+        public static final int anyoPeli=0x7f0b0023;
+        public static final int anyos=0x7f0b0026;
         /**  GENERAL 
  GENERAL 
  GENERAL 
@@ -1330,30 +1333,30 @@ containing a value of this type.
  CINES 
  CINES 
          */
-        public static final int cineArtesiete=0x7f0b0017;
-        public static final int cineLuzCastilla=0x7f0b0018;
+        public static final int cineArtesiete=0x7f0b0016;
+        public static final int cineLuzCastilla=0x7f0b0017;
         /**  CONEXION INTERNET 
  CONEXION INTERNET 
  CONEXION INTERNET 
          */
         public static final int conex_Error=0x7f0b000f;
-        public static final int directorPeli=0x7f0b0021;
-        public static final int divider=0x7f0b0019;
+        public static final int directorPeli=0x7f0b0020;
+        public static final int divider=0x7f0b0018;
         /**  JSON 
  JSON 
  JSON 
          */
-        public static final int dlg_datos=0x7f0b0031;
-        public static final int drawer_close=0x7f0b002c;
-        public static final int drawer_open=0x7f0b002b;
-        public static final int duracionPeli=0x7f0b0022;
-        public static final int edadPeli=0x7f0b0026;
+        public static final int dlg_datos=0x7f0b0030;
+        public static final int drawer_close=0x7f0b002b;
+        public static final int drawer_open=0x7f0b002a;
+        public static final int duracionPeli=0x7f0b0021;
+        public static final int edadPeli=0x7f0b0025;
         public static final int en=0x7f0b0012;
         public static final int es=0x7f0b0011;
-        public static final int faq_text=0x7f0b0030;
-        public static final int faq_title=0x7f0b002f;
-        public static final int generoPeli=0x7f0b0025;
-        public static final int horarioPeli=0x7f0b001d;
+        public static final int faq_text=0x7f0b002f;
+        public static final int faq_title=0x7f0b002e;
+        public static final int generoPeli=0x7f0b0024;
+        public static final int horarioPeli=0x7f0b001c;
         /**  IDIOMAS 
  IDIOMAS 
  IDIOMAS 
@@ -1363,24 +1366,23 @@ containing a value of this type.
  PELICULA 
  PELICULA 
          */
-        public static final int imgPeli=0x7f0b001b;
-        public static final int imgPreviaPeli=0x7f0b001c;
+        public static final int imgPeli=0x7f0b001a;
+        public static final int imgPreviaPeli=0x7f0b001b;
         /**  NAVIGATION DRAWER 
  NAVIGATION DRAWER 
  NAVIGATION DRAWER 
          */
-        public static final int item_icon=0x7f0b002a;
-        public static final int minutos=0x7f0b0028;
-        public static final int nav_help=0x7f0b002e;
-        public static final int nav_settings=0x7f0b002d;
-        public static final int paisPeli=0x7f0b0023;
-        public static final int pelicula1=0x7f0b0013;
-        public static final int separator=0x7f0b001a;
-        public static final int sinopsisPeli=0x7f0b001e;
-        public static final int title_datos_pelicula=0x7f0b0014;
-        public static final int tituloOrigPeli=0x7f0b0020;
-        public static final int tituloPeli=0x7f0b001f;
-        public static final int trailerPeli=0x7f0b0029;
+        public static final int item_icon=0x7f0b0029;
+        public static final int language=0x7f0b0013;
+        public static final int minutos=0x7f0b0027;
+        public static final int nav_help=0x7f0b002d;
+        public static final int nav_settings=0x7f0b002c;
+        public static final int paisPeli=0x7f0b0022;
+        public static final int separator=0x7f0b0019;
+        public static final int sinopsisPeli=0x7f0b001d;
+        public static final int tituloOrigPeli=0x7f0b001f;
+        public static final int tituloPeli=0x7f0b001e;
+        public static final int trailerPeli=0x7f0b0028;
         public static final int youtube=0x7f0b000e;
     }
     public static final class style {
