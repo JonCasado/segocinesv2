@@ -5,8 +5,12 @@ import com.segocines.adapter.ImageCursorAdapter;
 import com.segocines.bd.BaseDeDatos;
 import com.segocines.model.ActionBar;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -22,7 +26,7 @@ public class PeliculaActivity extends ActionBar
 {	
 	ListView listPeli;
 	Cursor cursor;
-	SimpleCursorAdapter adapter;
+	ImageCursorAdapter adapter;
 	Button btnYT;
 
 	static final String[] FROM = {BaseDeDatos.C_NOMBRE, BaseDeDatos.C_NOMBREORIG, BaseDeDatos.C_ANYO, BaseDeDatos.C_DURACION, BaseDeDatos.C_PAIS, BaseDeDatos.C_GENERO, BaseDeDatos.C_EDAD, BaseDeDatos.C_SINOPSIS, BaseDeDatos.C_HORARIOARTESIETE, BaseDeDatos.C_HORARIOLUZCASTILLA};
@@ -69,16 +73,5 @@ public class PeliculaActivity extends ActionBar
 
 		adapter = new ImageCursorAdapter(this, R.layout.formato_lista_peli, cursor, FROM, TO);
 		listPeli.setAdapter(adapter);
-
-		/*btnYT = (Button) findViewById(R.id.btnYT);
-  		btnYT.setOnClickListener(new OnClickListener()
-  		{
-  			@Override
-            public void onClick(View v) 
-            {
-            	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=vuJt_lGYf70"));
-              	startActivity(browserIntent);
-            }
-        });*/
 	}
 }
