@@ -40,6 +40,7 @@
     <string name="anyos"> años.</string>
     <string name="minutos"> min</string>
     <string name="trailerPeli">Trailer</string>
+    	<string name="trailer_Error">No hay trailer disponible</string>
     
     <!-- NAVIGATION DRAWER -->
     <string name="item_icon">Item icono</string>

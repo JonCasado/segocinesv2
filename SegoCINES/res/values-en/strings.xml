@@ -39,7 +39,8 @@
     <string name="edadPeli">Rate: </string>
     <string name="anyos"> years.</string>
     <string name="minutos"> min</string>
-    <string name="trailerPeli">Trailer</string>    
+    <string name="trailerPeli">Trailer</string>  
+    	<string name="trailer_Error">There is not trailer available</string>  
 
     <!-- NAVIGATION DRAWER -->
     <string name="item_icon">Item icon</string>

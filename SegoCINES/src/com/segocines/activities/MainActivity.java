@@ -80,7 +80,7 @@ public class MainActivity extends ActionBarActivity
     //ListView peliculas
     ListView pelisList;
     Cursor pelisCursor;
-	SimpleCursorAdapter pelisAdapter;
+	ImageCursorAdapter pelisAdapter;
     Button btnYT;
 	
 	//Base de Datos

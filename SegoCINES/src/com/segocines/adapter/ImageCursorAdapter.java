@@ -6,17 +6,22 @@ import com.segocines.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ImageCursorAdapter extends SimpleCursorAdapter
 {
@@ -37,7 +42,7 @@ public class ImageCursorAdapter extends SimpleCursorAdapter
 	public View getView(int pos, View inView, ViewGroup parent)
 	{
 		View v = inView;
-		if (v == null)
+		if(v == null)
 		{
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(layout, null);
@@ -120,6 +125,27 @@ public class ImageCursorAdapter extends SimpleCursorAdapter
 			String horarioB = this.c.getString(this.c.getColumnIndex("horarioLuzCastillaPeli"));
 			TextView txtV_HorarioB = (TextView) v.findViewById(R.id.horarioBPeli);
 			txtV_HorarioB.setText(horarioB);
+			
+			final String trailer = this.c.getString(this.c.getColumnIndex("trailerPeli"));
+			Button btnYT = (Button) v.findViewById(R.id.btnYT);
+	  		btnYT.setOnClickListener(new OnClickListener()
+	  		{
+	  			@Override
+	            public void onClick(View v) 
+	            {
+	  				if(trailer.contains("http://youtu.be/"))
+	  				{
+	  					Log.i("TRAIL good", trailer);
+	  					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(trailer));
+	  					context.startActivity(browserIntent);
+	  				}
+	  				else
+	  				{
+	  					Log.i("TRAIL null", trailer);
+	  					Toast.makeText(v.getContext(), v.getResources().getString(R.string.trailer_Error), Toast.LENGTH_SHORT).show();
+	  				}
+	            }
+	        });
 		}
 		//Lista peliculas cine Artesiete
 		else if(layout == 2130903070)

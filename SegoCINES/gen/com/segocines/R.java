@@ -1348,15 +1348,15 @@ containing a value of this type.
  JSON 
  JSON 
          */
-        public static final int dlg_datos=0x7f0b0030;
-        public static final int drawer_close=0x7f0b002b;
-        public static final int drawer_open=0x7f0b002a;
+        public static final int dlg_datos=0x7f0b0031;
+        public static final int drawer_close=0x7f0b002c;
+        public static final int drawer_open=0x7f0b002b;
         public static final int duracionPeli=0x7f0b0021;
         public static final int edadPeli=0x7f0b0025;
         public static final int en=0x7f0b0012;
         public static final int es=0x7f0b0011;
-        public static final int faq_text=0x7f0b002f;
-        public static final int faq_title=0x7f0b002e;
+        public static final int faq_text=0x7f0b0030;
+        public static final int faq_title=0x7f0b002f;
         public static final int generoPeli=0x7f0b0024;
         public static final int horarioPeli=0x7f0b001c;
         /**  IDIOMAS 
@@ -1374,17 +1374,18 @@ containing a value of this type.
  NAVIGATION DRAWER 
  NAVIGATION DRAWER 
          */
-        public static final int item_icon=0x7f0b0029;
+        public static final int item_icon=0x7f0b002a;
         public static final int language=0x7f0b0013;
         public static final int minutos=0x7f0b0027;
-        public static final int nav_help=0x7f0b002d;
-        public static final int nav_settings=0x7f0b002c;
+        public static final int nav_help=0x7f0b002e;
+        public static final int nav_settings=0x7f0b002d;
         public static final int paisPeli=0x7f0b0022;
         public static final int separator=0x7f0b0019;
         public static final int sinopsisPeli=0x7f0b001d;
         public static final int tituloOrigPeli=0x7f0b001f;
         public static final int tituloPeli=0x7f0b001e;
         public static final int trailerPeli=0x7f0b0028;
+        public static final int trailer_Error=0x7f0b0029;
         public static final int youtube=0x7f0b000e;
     }
     public static final class style {
