@@ -308,9 +308,9 @@ public class MainActivity extends ActionBarActivity
 				
 			//ACTUALIZAR
 			case R.id.action_Upgrade:
-				appSegoCines.eliminarDatos();
 				if(verificaConexion(this))
 		    	{
+					appSegoCines.eliminarDatos();
 		    		new JSONParse().execute();
 		    	}
 		    	else
@@ -426,23 +426,23 @@ public class MainActivity extends ActionBarActivity
 	    	
 	        JSONObject json = jParser.getJSONFromUrl(url);	//JSON de la url establecida
 	        
+	        File storage = Environment.getExternalStorageDirectory();
+    		File dir = new File(storage.getAbsoluteFile()+"/segocines");
+    		
+    		//Elimina las imagenes para descargar las nuevas
+    		if(dir.exists())
+    		{
+		        String deleteCmd = "rm -r "+dir;
+		        Runtime runtime = Runtime.getRuntime();
+		        try
+		        {
+		            runtime.exec(deleteCmd);
+		        } catch(IOException e){}
+    		}
+	        
 	        try
 	    	{           
 	    		data = json.getJSONArray(TAG_DATA);			//JSON en forma de Array
-	    		
-	    		File storage = Environment.getExternalStorageDirectory();
-	    		File dir = new File(storage.getAbsoluteFile()+"/segocines");
-	    		
-	    		//Elimina las imagenes para descargar las nuevas
-	    		if(dir.exists())
-	    		{
-    		        String deleteCmd = "rm -r "+dir;
-    		        Runtime runtime = Runtime.getRuntime();
-    		        try
-    		        {
-    		            runtime.exec(deleteCmd);
-    		        } catch(IOException e){}
-	    		}
           
 	    		for(int i = 0; i < data.length(); i++)
 	    		{
