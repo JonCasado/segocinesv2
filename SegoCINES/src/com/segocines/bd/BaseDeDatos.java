@@ -57,7 +57,7 @@ public class BaseDeDatos
 			
 			//Crea la BD
 			db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
-				C_IMGPREVIA+" text, "+C_IMG+" blob, "+
+				C_IMGPREVIA+" text, "+C_IMG+" text, "+
 				C_NOMBRE+" text, "+C_NOMBREORIG+" text, "
 				+C_SINOPSIS+" text, "+C_EDAD+" text, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
 				C_DIRECTOR+" text, "+C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");
@@ -96,7 +96,7 @@ public class BaseDeDatos
 		
 		//Crea la BD
 		db.execSQL("create table "+TABLE+" ("+C_ID+" int primary key, "+
-			C_IMGPREVIA+" text, "+C_IMG+" blob, "+
+			C_IMGPREVIA+" text, "+C_IMG+" text, "+
 			C_NOMBRE+" text, "+C_NOMBREORIG+" text, "
 			+C_SINOPSIS+" text, "+C_EDAD+" text, "+C_HORARIOARTESIETE+" text, "+C_HORARIOLUZCASTILLA+" text,"+
 			C_DIRECTOR+" text, "+C_ANYO+" int, "+C_DURACION+" int, "+C_PAIS+" text, "+C_GENERO+" text, "+C_TRAILER+" text)");

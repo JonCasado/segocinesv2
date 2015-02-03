@@ -13,8 +13,8 @@
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@drawable/imgpreviapeli_corazonesdeacero"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:paddingLeft="2dp"
         android:paddingRight="2dp" >
     </ImageView>
@@ -62,7 +62,7 @@
         android:layout_toEndOf="@+id/minutos"
         android:text="@string/divider"
         android:textStyle="bold"
-        android:textColor="#ff977a"
+        android:textColor="#1ab2db"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp" >
     </TextView>
@@ -87,7 +87,7 @@
         android:layout_toEndOf="@+id/paisPeli"
         android:text="@string/divider"
         android:textStyle="bold"
-        android:textColor="#ff977a"
+        android:textColor="#1ab2db"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp" >
     </TextView>
@@ -112,7 +112,7 @@
         android:layout_toEndOf="@+id/edadPeli"
         android:text="@string/divider"
         android:textStyle="bold"
-        android:textColor="#ff977a"
+        android:textColor="#1ab2db"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp" >
     </TextView>

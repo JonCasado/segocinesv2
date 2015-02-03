@@ -1087,17 +1087,18 @@ containing a value of this type.
         public static final int imgpeli_birdman=0x7f020063;
         public static final int imgpeli_comoacabarsintujefe=0x7f020064;
         public static final int imgpeli_corazonesdeacero=0x7f020065;
-        public static final int imgpreviapeli_corazonesdeacero=0x7f020066;
-        public static final int lv_separator=0x7f020067;
-        public static final int sgc_bckg_artesiete=0x7f020068;
-        public static final int sgc_bckg_luzcastilla=0x7f020069;
-        public static final int sgc_btnartesiete=0x7f02006a;
-        public static final int sgc_btnluzcastilla=0x7f02006b;
-        public static final int sgc_title=0x7f02006c;
-        public static final int sgc_title_artesiete=0x7f02006d;
-        public static final int sgc_title_luzcastilla=0x7f02006e;
-        public static final int splash=0x7f02006f;
-        public static final int splash_logo=0x7f020070;
+        public static final int imgpeli_default=0x7f020066;
+        public static final int imgpreviapeli_corazonesdeacero=0x7f020067;
+        public static final int lv_separator=0x7f020068;
+        public static final int sgc_bckg_artesiete=0x7f020069;
+        public static final int sgc_bckg_luzcastilla=0x7f02006a;
+        public static final int sgc_btnartesiete=0x7f02006b;
+        public static final int sgc_btnluzcastilla=0x7f02006c;
+        public static final int sgc_title=0x7f02006d;
+        public static final int sgc_title_artesiete=0x7f02006e;
+        public static final int sgc_title_luzcastilla=0x7f02006f;
+        public static final int splash=0x7f020070;
+        public static final int splash_logo=0x7f020071;
     }
     public static final class id {
         public static final int action_Settings=0x7f0a006a;
@@ -1265,11 +1266,12 @@ containing a value of this type.
         public static final int activity_peli=0x7f03001b;
         public static final int custom_drawer_item=0x7f03001c;
         public static final int formato_lista=0x7f03001d;
-        public static final int formato_lista_cine=0x7f03001e;
-        public static final int formato_lista_peli=0x7f03001f;
-        public static final int fragment_layout=0x7f030020;
-        public static final int splash=0x7f030021;
-        public static final int support_simple_spinner_dropdown_item=0x7f030022;
+        public static final int formato_lista_cineartesiete=0x7f03001e;
+        public static final int formato_lista_cineluzcastilla=0x7f03001f;
+        public static final int formato_lista_peli=0x7f030020;
+        public static final int fragment_layout=0x7f030021;
+        public static final int splash=0x7f030022;
+        public static final int support_simple_spinner_dropdown_item=0x7f030023;
     }
     public static final class menu {
         public static final int menu=0x7f0e0000;

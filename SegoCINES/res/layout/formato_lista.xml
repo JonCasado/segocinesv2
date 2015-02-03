@@ -9,7 +9,6 @@
     <ImageView
         android:id="@+id/imgPreviaPeli"
         android:contentDescription="@string/imgPeli"
-        android:src="@drawable/imgpeli_birdman"
         android:layout_width="90dp"
         android:layout_height="130dp"
         android:layout_alignParentLeft="true"

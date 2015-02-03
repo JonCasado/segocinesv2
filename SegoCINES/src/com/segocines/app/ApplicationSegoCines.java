@@ -68,7 +68,7 @@ public class ApplicationSegoCines extends Application implements OnSharedPrefere
 	///////////////////////////////////////////////////////////////
 	/* Inserta en la BD los datos de las peliculas.				 */
 	///////////////////////////////////////////////////////////////
-	public synchronized void escribirDatos(int idPeli, String imgPreviaPeli, byte[] imgPeli, String nombrePeli, String nombreOrigPeli, String sinopsisPeli, String edadPeli, String horarioArtesietePeli, String horarioLuzCastillaPeli, String directorPeli, int anyoPeli, String paisPeli, int duracionPeli, String generoPeli, String trailerPeli)
+	public synchronized void escribirDatos(int idPeli, String imgPreviaPeli, String imgPeli, String nombrePeli, String nombreOrigPeli, String sinopsisPeli, String edadPeli, String horarioArtesietePeli, String horarioLuzCastillaPeli, String directorPeli, int anyoPeli, String paisPeli, int duracionPeli, String generoPeli, String trailerPeli)
 	{		
 		try
 		{
