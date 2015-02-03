@@ -145,6 +145,9 @@ public class ImageCursorAdapter extends SimpleCursorAdapter
 			String edad = this.c.getString(this.c.getColumnIndex("edadPeli"));
 			TextView txtV_edad = (TextView) v.findViewById(R.id.edadPeli);
 			txtV_edad.setText(edad);
+			String horarioA = this.c.getString(this.c.getColumnIndex("horarioArtesietePeli"));
+			TextView txtV_HorarioA = (TextView) v.findViewById(R.id.horarioPeli);
+			txtV_HorarioA.setText(horarioA);
 		}
 		//Lista peliculas cine Luz Castilla
 		else if(layout == 2130903071)
@@ -170,6 +173,9 @@ public class ImageCursorAdapter extends SimpleCursorAdapter
 			String edad = this.c.getString(this.c.getColumnIndex("edadPeli"));
 			TextView txtV_edad = (TextView) v.findViewById(R.id.edadPeli);
 			txtV_edad.setText(edad);
+			String horarioB = this.c.getString(this.c.getColumnIndex("horarioLuzCastillaPeli"));
+			TextView txtV_HorarioB = (TextView) v.findViewById(R.id.horarioPeli);
+			txtV_HorarioB.setText(horarioB);
 		}
 		
 		return(v);

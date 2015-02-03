@@ -40,7 +40,6 @@ public class PeliculaActivity extends ActionBar
         listPeli = (ListView) findViewById(R.id.listPeli);
 
         BD = new BaseDeDatos(this);
-         
 	}
 	
 	@Override
