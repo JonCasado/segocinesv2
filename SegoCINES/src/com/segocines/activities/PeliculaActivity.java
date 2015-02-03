@@ -1,6 +1,7 @@
 package com.segocines.activities;
 
 import com.segocines.R;
+import com.segocines.adapter.ImageCursorAdapter;
 import com.segocines.bd.BaseDeDatos;
 import com.segocines.model.ActionBar;
 
@@ -63,11 +64,11 @@ public class PeliculaActivity extends ActionBar
 		super.onResume();
 		
 		String id_peli = getIntent().getStringExtra("id_peli");	//recoge el ID de la pelicula seleccionada
-
+		
 		cursor = BD.leerDatosPelicula(id_peli);
 		startManagingCursor(cursor);
 
-		adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_peli, cursor, FROM, TO);
+		adapter = new ImageCursorAdapter(this, R.layout.formato_lista_peli, cursor, FROM, TO);
 		listPeli.setAdapter(adapter);
 
 		/*btnYT = (Button) findViewById(R.id.btnYT);

@@ -1,6 +1,7 @@
 package com.segocines.activities;
 
 import com.segocines.R;
+import com.segocines.adapter.ImageCursorAdapter;
 import com.segocines.bd.BaseDeDatos;
 import com.segocines.model.ActionBar;
 
@@ -84,13 +85,13 @@ public class CineActivity extends ActionBar
         {
 			cursor = BD.leerDatosArtesiete();		//lee los datos de la BD
 			startManagingCursor(cursor);
-			adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_cine, cursor, FROM, TO);
+			adapter = new ImageCursorAdapter(this, R.layout.formato_lista_cineartesiete, cursor, FROM, TO);
         }
 		else
 		{
 			cursor = BD.leerDatosLuzCastilla();		//lee los datos de la BD
 			startManagingCursor(cursor);
-			adapter = new SimpleCursorAdapter(this, R.layout.formato_lista_cine, cursor, FROM, TO);
+			adapter = new ImageCursorAdapter(this, R.layout.formato_lista_cineluzcastilla, cursor, FROM, TO);
 		}
 		listCine.setAdapter(adapter);
 		listCine.setOnItemClickListener(new OnItemClickListener()

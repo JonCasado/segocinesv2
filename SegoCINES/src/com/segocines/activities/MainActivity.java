@@ -1,19 +1,25 @@
 package com.segocines.activities;
 
-import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.util.ByteArrayBuffer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.nostra13.universalimageloader.core.download.ImageDownloader;
+import com.nostra13.universalimageloader.utils.IoUtils;
 import com.segocines.R;
 import com.segocines.adapter.DrawerAdapter;
+import com.segocines.adapter.ImageCursorAdapter;
 import com.segocines.app.ApplicationSegoCines;
 import com.segocines.bd.BaseDeDatos;
 import com.segocines.model.DrawerItem;
@@ -31,10 +37,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,6 +66,9 @@ public class MainActivity extends ActionBarActivity
 {
 	//Objeto Aplication
 	private ApplicationSegoCines appSegoCines;
+	
+	//Descargar imagenes
+	private ImageLoaderConfiguration config;
 	
 	//NavigationDrawer
 	private DrawerLayout drawerLayout;
@@ -108,6 +119,7 @@ public class MainActivity extends ActionBarActivity
         setContentView(R.layout.activity_main);
               
         appSegoCines = ((ApplicationSegoCines) getApplication());
+        config = new ImageLoaderConfiguration.Builder(this).build();
 	    if (appSegoCines.checkDB())
 	    {
 	    	//recoge las peliculas si se inicia por primera vez la aplicacion 
@@ -213,7 +225,7 @@ public class MainActivity extends ActionBarActivity
 		pelisCursor = BD.leerDatos();
 		startManagingCursor(pelisCursor);
 		
-		pelisAdapter = new SimpleCursorAdapter(this, R.layout.formato_lista, pelisCursor, FROM, TO);
+		pelisAdapter = new ImageCursorAdapter(this, R.layout.formato_lista, pelisCursor, FROM, TO);
 		
 		pelisList.setAdapter(pelisAdapter);
 		pelisList.setOnItemClickListener(new OnItemClickListener()
@@ -377,18 +389,18 @@ public class MainActivity extends ActionBarActivity
          
         faq.setPositiveButton("Ok", new DialogInterface.OnClickListener()
         {
-            public void onClick(DialogInterface arg0, int arg1)
-            {
-            	
-            }
+            public void onClick(DialogInterface arg0, int arg1){}
         });
         
         faq.show();
 	}
+	//FIN-help
 	
 	
-	//Tarea asincrona que trata de recoger los datos de la direccion dada a traves de pulsar un boton,
-	//ademas llamamos al proceso en Background que conseguira el JSON alojado en la url que le pasemos.
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
+	/* Tarea asincrona que trata de recoger los datos de la direccion dada a traves de pulsar un boton,  */
+	/* ademas llamamos al proceso en Background que conseguira el JSON alojado en la url que le pasemos. */
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	private class JSONParse extends AsyncTask<String, String, JSONObject>
 	{
 		private ProgressDialog pDialog;
@@ -403,6 +415,8 @@ public class MainActivity extends ActionBarActivity
 	        pDialog.setIndeterminate(false);
 	        pDialog.setCancelable(true);
 	        pDialog.show();  
+	        	        
+	        ImageLoader.getInstance().init(config);
 		}
 		
 	    @Override
@@ -410,18 +424,25 @@ public class MainActivity extends ActionBarActivity
 	    {
 	    	JSONParser jParser = new JSONParser();
 	    	
-	        JSONObject json = jParser.getJSONFromUrl(url); //JSON de la url establecida
-	        return json;
-	    }
-	    
-	    @Override
-        protected void onPostExecute(JSONObject json)
-	    {
-	    	pDialog.dismiss();
-        
-	    	try
+	        JSONObject json = jParser.getJSONFromUrl(url);	//JSON de la url establecida
+	        
+	        try
 	    	{           
-	    		data = json.getJSONArray(TAG_DATA);		//JSON en forma de Array
+	    		data = json.getJSONArray(TAG_DATA);			//JSON en forma de Array
+	    		
+	    		File storage = Environment.getExternalStorageDirectory();
+	    		File dir = new File(storage.getAbsoluteFile()+"/segocines");
+	    		
+	    		//Elimina las imagenes para descargar las nuevas
+	    		if(dir.exists())
+	    		{
+    		        String deleteCmd = "rm -r "+dir;
+    		        Runtime runtime = Runtime.getRuntime();
+    		        try
+    		        {
+    		            runtime.exec(deleteCmd);
+    		        } catch(IOException e){}
+	    		}
           
 	    		for(int i = 0; i < data.length(); i++)
 	    		{
@@ -430,9 +451,15 @@ public class MainActivity extends ActionBarActivity
 	    			// Guardando el  JSON en una Variable
 	    			int idPeli = c.getInt(TAG_ID);
 	    			String imgPreviaPeli = c.getString(TAG_IMGPREVIA);
-	    			//String imgPeli = c.getString(TAG_IMG);
-	    			byte[] imgPeli = getImageFromUrl(TAG_IMG);
 	    			String nombrePeli = c.getString(TAG_NOMBRE);
+	    			String imgPeli = c.getString(TAG_IMG);
+    				try
+    				{
+						getImageFromUrl(imgPeli, nombrePeli.toLowerCase()+".jpg");
+					}
+    				catch(IOException e) {e.printStackTrace();}
+    				imgPeli = nombrePeli.toLowerCase()+".jpg";
+	    			
 	    			String nombreOrigPeli = c.getString(TAG_NOMBREORIG);
 	    			String sinopsisPeli = c.getString(TAG_SINOPSIS);
 	    			String edadPeli = c.getString(TAG_EDAD);
@@ -451,36 +478,109 @@ public class MainActivity extends ActionBarActivity
 	    			
 	    			appSegoCines = ((ApplicationSegoCines) getApplication());
 	    			appSegoCines.escribirDatos(idPeli, imgPreviaPeli, imgPeli, nombrePeli, nombreOrigPeli, sinopsisPeli, edadPeli, horarioArtesietePeli, horarioLuzCastillaPeli, directorPeli, anyoPeli, paisPeli, duracionPeli, generoPeli, trailerPeli);
-	                
-	    			MainActivity.this.onResume();
 	    		}
 	    		//FIN-for
        
 	    	} catch (JSONException e) {e.printStackTrace();}
+	        
+	        return json;
+	    }
+	    
+	    @Override
+        protected void onPostExecute(JSONObject json)
+	    {
+	    	pDialog.dismiss();
+	    	MainActivity.this.onResume();
 	    }
 	    //FIN-onPostExecute
 	}
 	//FIN-JSONParse
 	
 	
-	//Intentando descargar imagenes y guardarlas en SQLite
-	private byte[] getImageFromUrl(String url){
-	     try {
-	             URL imageUrl = new URL(url);
-	             URLConnection ucon = imageUrl.openConnection();
-
-	             InputStream is = ucon.getInputStream();
-	             BufferedInputStream bis = new BufferedInputStream(is);
-
-	             ByteArrayBuffer baf = new ByteArrayBuffer(500);
-	             int current = 0;
-	             while ((current = bis.read()) != -1) {
-	                     baf.append((byte) current);
-	             }
-
-	             return baf.toByteArray();
-	     } catch (Exception e) {
-	     }
-	     return null;
+	/////////////////////////////////////////////////////////////////
+	/* Descarga una imagen desde una URL y la guarda en la SDcard. */
+	/////////////////////////////////////////////////////////////////
+	@SuppressWarnings("deprecation")
+	private boolean getImageFromUrl(String urlStr, String name) throws IOException
+	{
+		boolean saved = false;
+		
+		checkExternalMedia();
+		
+		File storage = Environment.getExternalStorageDirectory();
+		File dir = new File(storage.getAbsoluteFile()+"/segocines");
+		
+		if(!dir.exists())
+		{
+			dir.mkdir();
+		}
+		
+		File file = new File(dir, name);
+		
+		InputStream is = null;
+		
+		File cachedImage = ImageLoader.getInstance().getDiscCache().get(urlStr);
+		if(cachedImage != null && cachedImage.exists()) //existe
+		{
+			is = new FileInputStream(cachedImage);
+		}
+		else //descargar
+		{
+			ImageDownloader downloader = new BaseImageDownloader(this);
+			is = downloader.getStream(urlStr, null);
+		}
+		
+		if(is != null)
+		{
+	        try
+	        {
+	            FileOutputStream targetStream = new FileOutputStream(file);
+	            try
+	            {
+	                IoUtils.copyStream(is, targetStream, null);
+	                saved = true;
+	            }
+	            finally
+	            {
+	                targetStream.close();
+	            }
+	        }
+	        finally
+	        {
+	            is.close();
+	        }
+	    }
+		
+		return saved;
 	}
+	//FIN-getImageFromUrl
+	
+	
+	///////////////////////////////////////////////////////////////
+	/* Comprueba si hay acceso a la SDcard.						 */
+	///////////////////////////////////////////////////////////////
+	private void checkExternalMedia()
+	{
+		boolean mExternalStorageAvailable = false;
+        boolean mExternalStorageWriteable = false;
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state))
+        {
+            // Can read and write the media
+            mExternalStorageAvailable = mExternalStorageWriteable = true;
+        }
+        else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state))
+        {
+            // Can only read the media
+            mExternalStorageAvailable = true;
+            mExternalStorageWriteable = false;
+        }
+        else
+        {
+            // Can't read or write
+            mExternalStorageAvailable = mExternalStorageWriteable = false;
+        }
+        Log.i("CHECK", "\n\nExternal Media: readable ="+mExternalStorageAvailable+" writable = "+mExternalStorageWriteable);
+    }
+	//FIN-checkExternalMedia
 }
